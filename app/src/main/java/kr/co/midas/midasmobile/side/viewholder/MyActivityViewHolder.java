@@ -6,13 +6,9 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import kr.co.midas.midasmobile.R;
-import kr.co.midas.midasmobile.base.domain.Record;
 import kr.co.midas.midasmobile.base.domain.Voluntary;
 
 
@@ -40,16 +36,11 @@ public class MyActivityViewHolder extends RecyclerView.ViewHolder {
         ButterKnife.bind(this, itemView);
     }
 
-    public void onBind(Record record){
-
-        Voluntary voluntary = record.getVoluntary();
-        Date date = voluntary.getVoluntary_date();
-        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd");
-        String dateStr = transFormat.format(date);
+    public void onBind(Voluntary voluntary){
 
         mTitle.setText(voluntary.getTitle());
         mLocation.setText(voluntary.getLocation());
-        mDate.setText(dateStr);
+        mDate.setText(voluntary.getVoluntary_date());
         mSection.setText(voluntary.getSection());
         mPoint.setText(String.valueOf(voluntary.getVoluntary_time()*1000));
 

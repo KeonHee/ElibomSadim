@@ -7,14 +7,14 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import kr.co.midas.midasmobile.base.domain.Record;
+import kr.co.midas.midasmobile.base.domain.Voluntary;
 import kr.co.midas.midasmobile.side.viewholder.MyActivityViewHolder;
 
 
 public class MyActivityAdapter extends RecyclerView.Adapter<MyActivityViewHolder> {
 
     private Activity mActivity;
-    private List<Record> recordList = new ArrayList<>();
+    private List<Voluntary> recordList = new ArrayList<>();
 
     public MyActivityAdapter(Activity activity){
         super();
@@ -39,13 +39,13 @@ public class MyActivityAdapter extends RecyclerView.Adapter<MyActivityViewHolder
         return recordList.size();
     }
 
-    public void setListData(List<Record> listItem) {
+    public void setListData(List<Voluntary> listItem) {
         recordList.clear();
         recordList.addAll(listItem);
         notifyDataSetChanged();
     }
 
-    public void addListData(Record item) {
+    public void addListData(Voluntary item) {
         recordList.add(item);
         notifyDataSetChanged();
     }
