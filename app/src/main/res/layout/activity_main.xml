@@ -43,12 +43,14 @@
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:context="kr.co.midas.midasmobile.MainActivity"
             >
-            <TextView
-            android:id="@+id/testText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!" />
+            <RelativeLayout
+                android:id="@+id/main_content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+            </RelativeLayout>
+
         </android.support.constraint.ConstraintLayout>
+
 
 
         <!-- Floating Btn -->
