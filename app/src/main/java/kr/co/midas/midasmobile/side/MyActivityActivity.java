@@ -4,11 +4,22 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import kr.co.midas.midasmobile.R;
+import kr.co.midas.midasmobile.base.define.Define;
+import kr.co.midas.midasmobile.base.domain.ResponseData;
+import kr.co.midas.midasmobile.base.domain.Voluntary;
+import kr.co.midas.midasmobile.base.network.RecordService;
+import kr.co.midas.midasmobile.base.utils.SharedPreferenceUtils;
 import kr.co.midas.midasmobile.side.adapter.MyActivityAdapter;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MyActivityActivity extends AppCompatActivity {
@@ -32,5 +43,44 @@ public class MyActivityActivity extends AppCompatActivity {
         mMyActivityAdapter = new MyActivityAdapter(this);
         mRecordListView.setAdapter(mMyActivityAdapter);
         mRecordListView.setHasFixedSize(true);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        long uid=SharedPreferenceUtils.getLongPreference(getApplicationContext(),Define.SHR_PREF_USER_ID_KEY,-1);
+        if(uid!=-1){
+            getRecordData("user", 2, 0);
+            Log.d("MyActivity", "my uid : " + uid);
+        }
+    }
+
+    private void getRecordData(String type, long id, int page ){
+        RecordService recordService = RecordService.retrofit.create(RecordService.class);
+        Call<ResponseData<List<Voluntary>>> call = recordService.getRecord(
+                type,id,page,"all");
+
+        call.enqueue(new Callback<ResponseData<List<Voluntary>>>() {
+            @Override
+            public void onResponse(Call<ResponseData<List<Voluntary>>> call, Response<ResponseData<List<Voluntary>>> response) {
+                if(response.isSuccessful()){
+                    if(response.body().getCode()== Define.OK){
+                        mMyActivityAdapter.setListData(response.body().getResult());
+                        Log.d("MyActivity", "ok");
+                    }else {
+                        Log.d("MyActivity", "code error1");
+                    }
+                }else {
+                    Log.d("MyActivity", "code error2");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ResponseData<List<Voluntary>>> call, Throwable t) {
+                Log.d("MyActivity", "network error : " + t.getMessage());
+                call.cancel();
+            }
+        });
     }
 }

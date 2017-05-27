@@ -23,6 +23,8 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="16dp"
             android:text="타이틀"
+            android:textSize="24sp"
+            android:textStyle="bold"
             />
         <TextView
             android:id="@+id/location_tv"
@@ -31,6 +33,7 @@
             android:layout_below="@+id/title_tv"
             android:layout_alignStart="@+id/title_tv"
             android:text="위치"
+            android:textSize="16sp"
             />
         <TextView
             android:id="@+id/vol_date_tv"
@@ -49,7 +52,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
             android:text="교육"
+            android:textSize="16sp"
             />
 
         <TextView
@@ -57,16 +62,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/section_tv"
-            android:layout_alignEnd="@+id/section_tv"
-            android:text="획득 Point"
+            android:layout_toLeftOf="@+id/point_tv"
+            android:text="획득 Point : "
+            android:textSize="16sp"
             />
         <TextView
             android:id="@+id/point_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/point_label_tv"
-            android:layout_alignEnd="@+id/point_label_tv"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/section_tv"
             android:text="1000점"
+            android:textSize="16sp"
+            android:textStyle="bold"
             />
 
 

@@ -22,7 +22,7 @@ import java.util.List;
 
 import kr.co.midas.midasmobile.R;
 import kr.co.midas.midasmobile.VoluntDetailActivity;
-import kr.co.midas.midasmobile.base.domain.ResponseListData;
+import kr.co.midas.midasmobile.base.domain.ResponseData;
 import kr.co.midas.midasmobile.base.domain.Voluntary;
 import kr.co.midas.midasmobile.base.network.VoluntaryService;
 import kr.co.midas.midasmobile.tabbar.adapters.VoluntListAdapter;
@@ -67,15 +67,15 @@ public class VoluntFragment extends Fragment {
 
 	private void login(long idx){
 		VoluntaryService loginService = VoluntaryService.retrofit.create(VoluntaryService.class);
-		Call<ResponseListData<Voluntary>> call = loginService.getVoluntaryAll(idx);
+		Call<ResponseData<List<Voluntary>>> call = loginService.getVoluntaryAll(idx);
 		call.enqueue(callback);
 	}
 
-	private Callback<ResponseListData<Voluntary>> callback = new Callback<ResponseListData<Voluntary>>() {
+	private Callback<ResponseData<List<Voluntary>>> callback = new Callback<ResponseData<List<Voluntary>>>() {
 		@Override
-		public void onResponse(Call<ResponseListData<Voluntary>> call, Response<ResponseListData<Voluntary>> response) {
+		public void onResponse(Call<ResponseData<List<Voluntary>>> call, Response<ResponseData<List<Voluntary>>> response) {
 			if (response.isSuccessful()){
-				ResponseListData<Voluntary> responseData = response.body();
+				ResponseData<List<Voluntary>> responseData = response.body();
 				if(responseData.getCode()== OK){
 					String uid = String.valueOf(responseData.getResult());
 					Log.d(TAG, String.valueOf(uid));
@@ -93,7 +93,7 @@ public class VoluntFragment extends Fragment {
 		}
 
 		@Override
-		public void onFailure(Call<ResponseListData<Voluntary>> call, Throwable t) {
+		public void onFailure(Call<ResponseData<List<Voluntary>>> call, Throwable t) {
 			Log.e(TAG,t.getMessage());
 
 		}

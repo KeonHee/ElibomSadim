@@ -37,8 +37,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.midas.midasmobile.R;
+import kr.co.midas.midasmobile.base.domain.Rank;
+import kr.co.midas.midasmobile.base.domain.ResponseData;
+import kr.co.midas.midasmobile.base.domain.Section;
 import kr.co.midas.midasmobile.base.domain.Team;
 import kr.co.midas.midasmobile.base.domain.User;
+import kr.co.midas.midasmobile.base.network.RecordService;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static kr.co.midas.midasmobile.base.define.Define.OK;
 
 
 public class RankFragment extends Fragment implements SeekBar.OnSeekBarChangeListener,
@@ -118,21 +127,35 @@ public class RankFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
 		return v;
 	}
 
-	@Override
-	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-		super.onActivityCreated(savedInstanceState);
+	private void loadData(){
+		RecordService recordService = RecordService.retrofit.create(RecordService.class);
+		Call<ResponseData<Rank>> call= recordService.getRanks();
+		call.enqueue(new Callback<ResponseData<Rank>>() {
+			@Override
+			public void onResponse(Call<ResponseData<Rank>> call, Response<ResponseData<Rank>> response) {
+				if(response.isSuccessful()){
+					if(response.body().getCode()== OK){
+						Rank rank = response.body().getResult();
+						bindTeamRankView(rank.getTeams());
+						bindUserRankView(rank.getUsers());
 
-		List<Team> teams = new ArrayList<>();
-		for (int i = 1; i <= 5; i++) {
-			teams.add(new Team(i, i + "등팀이름", null, i * i, null, null, null, null));
-		}
-		List<User> users = new ArrayList<>();
-		for (int i = 1; i <= 5; i++) {
-			users.add(new User(i, i + "등 이름", null, null, i * i, null,
-					0, 0, null, null, null, null, null));
-		}
-		bindTeamRankView(teams);
-		bindUserRankView(users);
+						int totalPoint=0;
+						for(Section section : rank.getSections()) {
+							totalPoint+=section.getPoint();
+						}
+						setPieData(rank.getSections(),totalPoint);
+
+						int totalDonation = (int) rank.getTotal();
+						setHorizonData(totalPoint/1000,totalPoint,totalDonation);
+					}
+				}
+			}
+
+			@Override
+			public void onFailure(Call<ResponseData<Rank>> call, Throwable t) {
+
+			}
+		});
 	}
 
 	private void initTeamRank(View rootView) {
@@ -259,7 +282,6 @@ public class RankFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
 		yr.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 //        yr.setInverted(true);
 
-		setHorizonData(12, 50);
 		mHoizonChart.setFitBars(true);
 		mHoizonChart.animateY(2500);
 
@@ -320,8 +342,6 @@ public class RankFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
 		// add a selection listener
 		mChart.setOnChartValueSelectedListener(this);
 
-		setPieData(mSection.length, 100);
-
 		mChart.animateY(1400, Easing.EasingOption.EaseInOutQuad);
 		// mChart.spin(2000, 0, 360);
 
@@ -345,19 +365,12 @@ public class RankFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
 
 	private SpannableString generateCenterSpannableText() {
 
-//		SpannableString s = new SpannableString("MPAndroidChart\ndeveloped by Philipp Jahoda");
-//		s.setSpan(new RelativeSizeSpan(1.7f), 0, 14, 0);
-//		s.setSpan(new StyleSpan(Typeface.NORMAL), 14, s.length() - 15, 0);
-//		s.setSpan(new ForegroundColorSpan(Color.GRAY), 14, s.length() - 15, 0);
-//		s.setSpan(new RelativeSizeSpan(.8f), 14, s.length() - 15, 0);
-//		s.setSpan(new StyleSpan(Typeface.ITALIC), s.length() - 14, s.length(), 0);
-//		s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()), s.length() - 14, s.length(), 0);
-		SpannableString s = new SpannableString("이 달의 봉사 분야");
-		s.setSpan(new RelativeSizeSpan(1.7f), 0, 10, 0);
+		SpannableString s = new SpannableString("이 달의 봉사");
+		s.setSpan(new RelativeSizeSpan(1.7f), 0, 7, 0);
 		return s;
 	}
 
-	private void setHorizonData(int count, float range) {
+	private void setHorizonData(int e1,int e2,int e3) {
 
 		float barWidth = 5f;
 		float spaceForBar = 10f;
@@ -366,18 +379,11 @@ public class RankFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
 		 * HorizontalChart Entry
 		 */
 		ArrayList<BarEntry> yVals1 = new ArrayList<>();
-		yVals1.add(new BarEntry(1 * spaceForBar, 5000, "t1"));
+		yVals1.add(new BarEntry(1 * spaceForBar, e1, "t1"));
 		ArrayList<BarEntry> yVals2 = new ArrayList<>();
-		yVals2.add(new BarEntry(2 * spaceForBar, 1000, "t2"));
+		yVals2.add(new BarEntry(2 * spaceForBar, e2, "t2"));
 		ArrayList<BarEntry> yVals3 = new ArrayList<>();
-		yVals3.add(new BarEntry(3 * spaceForBar, 9000, "t3"));
-
-//        for (int i = 0; i < count; i++) {
-//            float val = (float) (Math.random() * range);
-//            yVals1.add(new BarEntry(i * spaceForBar, val,
-//                    getResources().getDrawable(R.drawable.ic_star_black_24dp)));
-//        }
-
+		yVals3.add(new BarEntry(3 * spaceForBar, e3, "t3"));
 
 		ArrayList<Integer> colors1 = new ArrayList<>();
 		ArrayList<Integer> colors2 = new ArrayList<>();
@@ -433,23 +439,17 @@ public class RankFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
 		}
 	}
 
-	private void setPieData(int count, float range) {
-
-		float mult = range;
+	private void setPieData(List<Section> sections,int totalPoint) {
 
 		ArrayList<PieEntry> entries = new ArrayList<>();
 
 		/**
 		 * PieChart Entry
 		 */
-		entries.add(new PieEntry((float) 0.25,
-				mSection[0]));
-		entries.add(new PieEntry((float) 0.25,
-				mSection[1]));
-		entries.add(new PieEntry((float) 0.25,
-				mSection[2]));
-		entries.add(new PieEntry((float) 0.25,
-				mSection[3]));
+		for(Section section : sections){
+			entries.add(new PieEntry((float) section.getPoint()/totalPoint,
+					section.getName()));
+		}
 
 		PieDataSet dataSet = new PieDataSet(entries, "Election Results");
 
@@ -500,8 +500,6 @@ public class RankFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
 	public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 		tvX.setText("" + (mSeekBarX.getProgress()));
 		tvY.setText("" + (mSeekBarY.getProgress()));
-
-		setPieData(mSeekBarX.getProgress(), mSeekBarY.getProgress());
 	}
 
 	@Override
