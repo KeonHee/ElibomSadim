@@ -7,7 +7,9 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 import static kr.co.midas.midasmobile.base.define.Define.HOST_URL;
 
@@ -21,6 +23,9 @@ public interface LoginService {
     @FormUrlEncoded
     @POST("midas/user/login.php")
     Call<ResponseData<User>> login(@Field("email") String email, @Field("pw") String pw);
+
+    @GET("midas/user/read.php")
+    Call<ResponseData<User>> getUserInfo(@Query("user_id") long uid);
 
 }
 
