@@ -17,7 +17,7 @@ public class Voluntary implements Serializable {
     @SerializedName("voluntary_time") private int voluntary_time;
     @SerializedName("max_participants") private int maxParticipants;
     @SerializedName("current_participants") private int currentParticipants;
-    @SerializedName("imgPath") private String imgPath;
+    @SerializedName("img_path") private String imgPath;
 
     public Voluntary(){}
 

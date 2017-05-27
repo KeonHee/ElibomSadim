@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.midas.midasmobile.R;
-import kr.co.midas.midasmobile.tabbar.objects.TeamObject;
+import kr.co.midas.midasmobile.base.domain.Team;
 import kr.co.midas.midasmobile.tabbar.viewholders.TeamListHolder;
 
 /**
@@ -17,10 +17,10 @@ import kr.co.midas.midasmobile.tabbar.viewholders.TeamListHolder;
  */
 
 public class TeamListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    public static List<TeamObject> teamList;
+    public static List<Team> teamList;
     private Context context;
 
-    public TeamListAdapter(Context context, List<TeamObject> teamList){
+    public TeamListAdapter(Context context, List<Team> teamList){
         this.teamList = new ArrayList<>();
         this.teamList = teamList;
         this.context = context;
@@ -43,5 +43,11 @@ public class TeamListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public int getItemCount() {
         return this.teamList.size();
+    }
+
+    public void setTeamList(List<Team> teams){
+        teamList.clear();
+        teamList.addAll(teams);
+        notifyDataSetChanged();
     }
 }

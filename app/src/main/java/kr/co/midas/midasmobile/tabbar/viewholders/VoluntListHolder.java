@@ -48,7 +48,7 @@ public class VoluntListHolder extends RecyclerView.ViewHolder implements View.On
     public void onBind(Context context, Voluntary voluntObject){
         Glide.with(context).load(voluntObject.getImgPath()).into(volunImg);
         volunTitle.setText(voluntObject.getTitle());
-        ptcipants.setText(voluntObject.getCurrentParticipants());
+//        ptcipants.setText(voluntObject.getCurrentParticipants());
     }
 
     @Override

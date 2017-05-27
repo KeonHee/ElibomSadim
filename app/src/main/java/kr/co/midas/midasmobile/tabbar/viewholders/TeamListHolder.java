@@ -15,8 +15,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import kr.co.midas.midasmobile.R;
 import kr.co.midas.midasmobile.TeamDetailActivity;
+import kr.co.midas.midasmobile.base.domain.Team;
 import kr.co.midas.midasmobile.tabbar.adapters.TeamListAdapter;
-import kr.co.midas.midasmobile.tabbar.objects.TeamObject;
 
 /**
  * Created by user on 2017-05-23.
@@ -48,21 +48,21 @@ public class TeamListHolder extends RecyclerView.ViewHolder implements View.OnCl
         textView.setEllipsize(TextUtils.TruncateAt.END);
     }
 
-    public void onBind(Context context, TeamObject teamObject){
-        Glide.with(context).load(teamObject.getLogoUrl()).into(teamLogo);
+    public void onBind(Context context, Team teamObject){
+        Glide.with(context).load(teamObject.getAvatarUrl()).into(teamLogo);
         teamName.setText(teamObject.getTeamName());
-        teamDesc.setText(teamObject.getDescript());
-        teamPoint.setText(String.valueOf(teamObject.getTeamPoint()));
+        teamDesc.setText(teamObject.getDescription());
+        teamPoint.setText(String.valueOf(teamObject.getPoint()));
     }
 
     @Override
     public void onClick(View view) {
         if(view == teamCard){
             Intent intent = new Intent(view.getContext(), TeamDetailActivity.class);
-            intent.putExtra("imgUrl", TeamListAdapter.teamList.get(getAdapterPosition()).getLogoUrl());
-            intent.putExtra("teamPoint", TeamListAdapter.teamList.get(getAdapterPosition()).getTeamPoint());
+            intent.putExtra("imgUrl", TeamListAdapter.teamList.get(getAdapterPosition()).getAvatarUrl());
+            intent.putExtra("teamPoint", TeamListAdapter.teamList.get(getAdapterPosition()).getPoint());
             intent.putExtra("teamName", TeamListAdapter.teamList.get(getAdapterPosition()).getTeamName());
-            intent.putExtra("teamDesc", TeamListAdapter.teamList.get(getAdapterPosition()).getDescript());
+            intent.putExtra("teamDesc", TeamListAdapter.teamList.get(getAdapterPosition()).getDescription());
             view.getContext().startActivity(intent);
         }
     }

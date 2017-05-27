@@ -41,4 +41,10 @@ public class VoluntListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public int getItemCount() {
         return voluntList.size();
     }
+
+    public void setTeamList(List<Voluntary> volun){
+        voluntList.clear();
+        voluntList.addAll(volun);
+        notifyDataSetChanged();
+    }
 }

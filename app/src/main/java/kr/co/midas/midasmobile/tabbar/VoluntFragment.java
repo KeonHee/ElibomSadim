@@ -30,9 +30,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static kr.co.midas.midasmobile.base.define.Define.NOT_FOUND;
-import static kr.co.midas.midasmobile.base.define.Define.OK;
-
 
 public class VoluntFragment extends Fragment {
 
@@ -50,8 +47,8 @@ public class VoluntFragment extends Fragment {
 		
 		View view = inflater.inflate(R.layout.fragment_volunt, container, false);
 		initViews(view);
-//		firstPage(view);
-//		login(0);
+
+		loadData(0);
 		return view;
 	}
 
@@ -61,89 +58,37 @@ public class VoluntFragment extends Fragment {
 		voluntObjects = new ArrayList<>();
 		gridLayoutManager = new GridLayoutManager(view.getContext(), 2);
 		voluntView.setLayoutManager(gridLayoutManager);
+		voluntAdapter = new VoluntListAdapter(view.getContext(), voluntObjects);
+		voluntView.setAdapter(voluntAdapter);
 
 		setHasOptionsMenu(true);
 	}
 
-//
-//	private void login(long idx){
-//		VoluntaryService loginService = VoluntaryService.retrofit.create(VoluntaryService.class);
-//		Call<ResponseListData<Voluntary>> call = loginService.getVoluntaryAll(idx);
-//		call.enqueue(callback);
-//	}
+	private void loadData(int page){
+		VoluntaryService volunService = VoluntaryService.retrofit.create(VoluntaryService.class);
+		Call<ResponseData<List<Voluntary>>> call = volunService.getVoluntaryAll(page);
+		call.enqueue(new Callback<ResponseData<List<Voluntary>>>() {
+			@Override
+			public void onResponse(Call<ResponseData<List<Voluntary>>> call, Response<ResponseData<List<Voluntary>>> response) {
+				if(response.isSuccessful()){
+					if(response.body().getCode() == 200){
+						List<Voluntary> volunList = response.body().getResult();
+						voluntAdapter.setTeamList(volunList);
+						Log.e("팀", String.valueOf(volunList));
+					}
 
-//
-//	private Callback<ResponseListData<Voluntary>> callback = new Callback<ResponseListData<Voluntary>>() {
-//		@Override
-//		public void onResponse(Call<ResponseListData<Voluntary>> call, Response<ResponseListData<Voluntary>> response) {
-//			if (response.isSuccessful()){
-//				ResponseListData<Voluntary> responseData = response.body();
-//				if(responseData.getCode()== OK){
-//					String uid = String.valueOf(responseData.getResult());
-//					Log.d(TAG, String.valueOf(uid));
-//
-//				}else if(responseData.getCode() == NOT_FOUND){
-//					Log.e(TAG,"Not Found Error");
-//
-//				}else {
-//					Log.e(TAG,"fail T_T");
-//
-//				}
-//			}else {
-//				Log.e(TAG, response.errorBody().toString());
-//			}
-//		}
-//
-//		@Override
-//		public void onFailure(Call<ResponseListData<Voluntary>> call, Throwable t) {
-//			Log.e(TAG,t.getMessage());
-//
-//		}
-//	};
-
-	private void login(long idx){
-		VoluntaryService loginService = VoluntaryService.retrofit.create(VoluntaryService.class);
-		Call<ResponseData<List<Voluntary>>> call = loginService.getVoluntaryAll(idx);
-		call.enqueue(callback);
-	}
-
-	private Callback<ResponseData<List<Voluntary>>> callback = new Callback<ResponseData<List<Voluntary>>>() {
-		@Override
-		public void onResponse(Call<ResponseData<List<Voluntary>>> call, Response<ResponseData<List<Voluntary>>> response) {
-			if (response.isSuccessful()){
-				ResponseData<List<Voluntary>> responseData = response.body();
-				if(responseData.getCode()== OK){
-					String uid = String.valueOf(responseData.getResult());
-					Log.d(TAG, String.valueOf(uid));
-
-				}else if(responseData.getCode() == NOT_FOUND){
-					Log.e(TAG,"Not Found Error");
-
-				}else {
-					Log.e(TAG,"fail T_T");
+				}else{
 
 				}
-			}else {
-				Log.e(TAG, response.errorBody().toString());
 			}
-		}
 
-		@Override
-		public void onFailure(Call<ResponseData<List<Voluntary>>> call, Throwable t) {
-			Log.e(TAG,t.getMessage());
-
-		}
-	};
-
-	private void firstPage(View view){
-//		voluntObjects.add(new VoluntObject("http://52.79.189.34/story/cat1.jpg", "야", "2", null));
-//		voluntObjects.add(new VoluntObject("http://52.79.189.34/story/cat2.jpg", "야2", "2"));
-//		voluntObjects.add(new VoluntObject("http://52.79.189.34/story/cat3.jpg", "야3", "2"));
-//		voluntObjects.add(new VoluntObject("http://52.79.189.34/story/cat4.jpg", "야4", "2"));
-//		voluntObjects.add(new VoluntObject("http://52.79.189.34/story/cat5.jpg", "야5", "2"));
-//		voluntAdapter = new VoluntListAdapter(view.getContext(), voluntObjects);
-		voluntView.setAdapter(voluntAdapter);
+			@Override
+			public void onFailure(Call<ResponseData<List<Voluntary>>> call, Throwable t) {
+				Log.e(TAG, t.getMessage());
+			}
+		});
 	}
+
 
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

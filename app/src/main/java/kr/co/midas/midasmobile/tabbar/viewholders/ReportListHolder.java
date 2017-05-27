@@ -58,7 +58,12 @@ public class ReportListHolder extends RecyclerView.ViewHolder implements View.On
     public void onClick(View view) {
         if(view == reportCard){
             Intent intent = new Intent(view.getContext(), ReportDetailActivity.class);
+            intent.putExtra("reportImg", ReportListAdapter.reportList.get(getAdapterPosition()).getImgUrl());
+            intent.putExtra("reportPoint", ReportListAdapter.reportList.get(getAdapterPosition()).getPoint());
+            intent.putExtra("reportDate", ReportListAdapter.reportList.get(getAdapterPosition()).getDate());
+            intent.putExtra("reportLoc", ReportListAdapter.reportList.get(getAdapterPosition()).getLocation());
             intent.putExtra("reportTitle", ReportListAdapter.reportList.get(getAdapterPosition()).getTitle());
+            intent.putExtra("reportContents", ReportListAdapter.reportList.get(getAdapterPosition()).getContents());
             view.getContext().startActivity(intent);
         }
     }
