@@ -7,16 +7,16 @@ public class Record implements Serializable{
     private static final long serialVersionUID = 1L;
 
     private long id;
-    private int playTime;
+    private String state;
     private Voluntary voluntary;
     private User user;
     private Team team;
 
     public Record(){}
 
-    public Record(long id, int playTime, Voluntary voluntary, User user, Team team) {
+    public Record(long id, String state, Voluntary voluntary, User user, Team team) {
         this.id = id;
-        this.playTime = playTime;
+        this.state = state;
         this.voluntary = voluntary;
         this.user = user;
         this.team = team;
@@ -28,14 +28,6 @@ public class Record implements Serializable{
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public int getPlayTime() {
-        return playTime;
-    }
-
-    public void setPlayTime(int playTime) {
-        this.playTime = playTime;
     }
 
     public Voluntary getVoluntary() {
@@ -60,5 +52,13 @@ public class Record implements Serializable{
 
     public void setTeam(Team team) {
         this.team = team;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }
