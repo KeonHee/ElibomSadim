@@ -6,9 +6,6 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import kr.co.midas.midasmobile.R;
@@ -36,12 +33,12 @@ public class MyDonationViewHolder extends RecyclerView.ViewHolder {
 
     public void onBind(Donation donation) {
 
-        Date date = donation.getDonate_at();
-        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd");
-        String dateStr = transFormat.format(date);
+//        Date date = donation.getDonate_at();
+//        SimpleDateFormat transFormat = new SimpleDateFormat("yyyy/MM/dd");
+//        String dateStr = transFormat.format(date);
 
         mReceiver.setText(donation.getRecipient());
-        mDate.setText(dateStr);
+        mDate.setText(donation.getDonate_at());
         mPoint.setText(String.valueOf(donation.getPoint()));
 
     }
