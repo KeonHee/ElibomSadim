@@ -1,6 +1,8 @@
 package kr.co.midas.midasmobile.base.domain;
 
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 import java.util.List;
 
@@ -8,12 +10,13 @@ public class Team {
 
     private static final long serialVersionUID = 1L;
 
-    private long id;
-    private String teamName;
-    private String description;
-    private long point;
-    private Date create_at;
-    private List<User> users;
+    @SerializedName("team_id") private long id;
+    @SerializedName("team_name") private String teamName;
+    @SerializedName("description") private String description;
+    @SerializedName("team_point") private long point;
+    @SerializedName("create_at") private Date create_at;
+    @SerializedName("users") private List<User> users;
+
     private List<Voluntary> voluntaries;
 
     public Team(){}

@@ -5,16 +5,20 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/editTextId"
+        android:id="@+id/editTextEmail"
         style="@style/CustomTextView"
         android:hint="@string/id_input"
-        android:layout_marginTop="100dp"/>
+        android:layout_marginTop="100dp"
+        android:inputType="textEmailAddress"
+        />
 
     <EditText
         android:id="@+id/editTextPwd"
         style="@style/CustomTextView"
         android:hint="@string/pwd_input"
-        android:layout_marginTop="50dp"/>
+        android:layout_marginTop="50dp"
+        android:inputType="textPassword"
+        />
 
     <ImageView
         android:id="@+id/loginImageView"
