@@ -14,15 +14,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="kr.co.midas.midasmobile.MainActivity"
-
         >
 
 
         <!-- Top Bar -->
         <android.support.design.widget.AppBarLayout
+            android:id="@+id/toolbar_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:theme="@style/AppTheme.AppBarOverlay">
+            android:theme="@style/AppTheme.AppBarOverlay"
+            app:expanded="false">
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -34,21 +35,21 @@
         </android.support.design.widget.AppBarLayout>
 
         <!-- Main Contents -->
-        <LinearLayout
-            android:id="@+id/main_contents"
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context="kr.co.midas.midasmobile.MainActivity"
             >
-
             <TextView
-                android:id="@+id/testText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Hello World!"
-                />
-        </LinearLayout>
+            android:id="@+id/testText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello World!" />
+        </android.support.constraint.ConstraintLayout>
+
 
         <!-- Floating Btn -->
         <android.support.design.widget.FloatingActionButton
