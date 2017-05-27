@@ -1,5 +1,6 @@
 package kr.co.midas.midasmobile;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -17,6 +18,8 @@ import android.view.View;
 import android.widget.TabHost;
 
 import kr.co.midas.midasmobile.base.fragments.MyHome;
+import kr.co.midas.midasmobile.side.MyInfoActivity;
+import kr.co.midas.midasmobile.side.MyTeamActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -54,22 +57,6 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-//        GithubIssue.getGitIssueListAsync("square", "retrofit", new GithubIssue.RetrofitCallback() {
-//            @Override
-//            public void success(List<Issue> gitIssues) {
-//
-//                for(int i=0;i<10;i++){
-//                    mTextView.append(gitIssues.get(i).toString());
-//                }
-//            }
-//
-//            @Override
-//            public void error(Throwable throwable) {
-//                Log.e("Retrofit Network", throwable.getMessage());
-//            }
-//        });
-
         MyHome main = new MyHome();
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
@@ -102,7 +89,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_logout) { //로그아웃 시켜야
+            moveToPage(LoginActivity.class);
             return true;
         }
 
@@ -115,22 +103,22 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_info) {
+            moveToPage(MyInfoActivity.class);
+        } else if (id == R.id.nav_donation) {
+            moveToPage(MyInfoActivity.class);
+        } else if (id == R.id.nav_team) {
+            moveToPage(MyTeamActivity.class);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void moveToPage(Class<?> destActivity){
+        final Intent intent = new Intent(getApplicationContext(), destActivity);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
     }
 }

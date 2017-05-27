@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/editTextId"
+        style="@style/CustomTextView"
+        android:hint="@string/id_input"
+        android:layout_marginTop="100dp"/>
+
+    <EditText
+        android:id="@+id/editTextPwd"
+        style="@style/CustomTextView"
+        android:hint="@string/pwd_input"
+        android:layout_marginTop="50dp"/>
+
+    <ImageView
+        android:id="@+id/loginImageView"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/login"/>
+
+    <ImageView
+        android:id="@+id/moveSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/signup"/>
+
+</LinearLayout>
