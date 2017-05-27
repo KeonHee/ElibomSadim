@@ -11,6 +11,7 @@ public class Voluntary implements Serializable {
     private String location;
     private String title;
     private String contents;
+    private String section;
     private Date voluntary_date;
     private int voluntary_time;
     private int maxParticipants;
@@ -18,11 +19,12 @@ public class Voluntary implements Serializable {
 
     public Voluntary(){}
 
-    public Voluntary(long id, String location, String title, String contents, Date voluntary_date, int voluntary_time, int maxParticipants, int currentParticipants) {
+    public Voluntary(long id, String location, String title, String contents, String section, Date voluntary_date, int voluntary_time, int maxParticipants, int currentParticipants) {
         this.id = id;
         this.location = location;
         this.title = title;
         this.contents = contents;
+        this.section = section;
         this.voluntary_date = voluntary_date;
         this.voluntary_time = voluntary_time;
         this.maxParticipants = maxParticipants;
@@ -91,5 +93,13 @@ public class Voluntary implements Serializable {
 
     public void setCurrentParticipants(int currentParticipants) {
         this.currentParticipants = currentParticipants;
+    }
+
+    public String getSection() {
+        return section;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
     }
 }
