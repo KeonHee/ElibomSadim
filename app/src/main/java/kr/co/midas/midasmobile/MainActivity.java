@@ -25,6 +25,8 @@ import kr.co.midas.midasmobile.base.domain.ResponseData;
 import kr.co.midas.midasmobile.base.domain.User;
 import kr.co.midas.midasmobile.base.network.LoginService;
 import kr.co.midas.midasmobile.base.utils.SharedPreferenceUtils;
+import kr.co.midas.midasmobile.side.MyActivityActivity;
+import kr.co.midas.midasmobile.side.MyDonationActivity;
 import kr.co.midas.midasmobile.side.MyInfoActivity;
 import kr.co.midas.midasmobile.side.MyTeamActivity;
 import kr.co.midas.midasmobile.tabbar.MyHome;
@@ -138,8 +140,10 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_info) {
             moveToPage(MyInfoActivity.class);
+        } else if( id == R.id.nav_activity){
+            moveToPage(MyActivityActivity.class);
         } else if (id == R.id.nav_donation) {
-            moveToPage(MyInfoActivity.class);
+            moveToPage(MyDonationActivity.class);
         } else if (id == R.id.nav_team) {
             moveToPage(MyTeamActivity.class);
         }
