@@ -17,7 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TabHost;
 
-import kr.co.midas.midasmobile.base.fragments.MyHome;
+import kr.co.midas.midasmobile.tabbar.MyHome;
 import kr.co.midas.midasmobile.side.MyInfoActivity;
 import kr.co.midas.midasmobile.side.MyTeamActivity;
 
