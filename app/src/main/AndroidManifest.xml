@@ -37,6 +37,8 @@
 
         <activity android:name=".VoluntDetailActivity"/>
 
+        <activity android:name=".ReportDetailActivity"/>
+
 
         <activity
             android:name=".side.MyInfoActivity"
