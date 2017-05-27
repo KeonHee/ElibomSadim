@@ -2,10 +2,6 @@ package kr.co.midas.midasmobile.base.data;
 
 import android.provider.BaseColumns;
 
-/**
- * Created by user on 2017-05-26.
- */
-
 public class TestContract {
 
     public static final class TestEntry implements BaseColumns {

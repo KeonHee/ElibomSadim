@@ -4,10 +4,6 @@ import static kr.co.midas.midasmobile.base.data.TestContract.TestEntry.COLUMN_AG
 import static kr.co.midas.midasmobile.base.data.TestContract.TestEntry.COLUMN_TIMESTAMP;
 import static kr.co.midas.midasmobile.base.data.TestContract.TestEntry.COLUMN_USER_NAME;
 
-/**
- * Created by user on 2017-05-26.
- */
-
 public class Define {
 
     public static final String[] TEST_PROJECTION = {
@@ -19,5 +15,7 @@ public class Define {
     public static final int INDEX_COLUMN_USER_NAME = 0;
     public static final int INDEX_COLUMN_AGE = 1;
     public static final int INDEX_COLUMN_TIMESTAMP = 2;
+
+    public final static String HOST_URL = "https://api.github.com/";
 
 }
