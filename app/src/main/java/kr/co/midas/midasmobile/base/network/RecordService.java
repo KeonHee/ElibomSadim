@@ -1,7 +1,11 @@
 package kr.co.midas.midasmobile.base.network;
 
 
-import kr.co.midas.midasmobile.base.domain.ResponseListData;
+import java.util.List;
+
+import kr.co.midas.midasmobile.base.domain.Donation;
+import kr.co.midas.midasmobile.base.domain.Rank;
+import kr.co.midas.midasmobile.base.domain.ResponseData;
 import kr.co.midas.midasmobile.base.domain.Voluntary;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -18,11 +22,18 @@ public interface RecordService {
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
-    //http://kyuhwan.com:8080/midas/voluntaryRecord/list.php?type=user&id=2&idx=0&state=all
     @GET("midas/voluntaryRecord/list.php")
-    Call<ResponseListData<Voluntary>> getRecord(@Query("type") String type,
-                                                @Query("id") long id,
-                                                @Query("idx") int page,
-                                                @Query("state") String state
+    Call<ResponseData<List<Voluntary>>> getRecord(@Query("type") String type,
+                                                  @Query("id") long id,
+                                                  @Query("idx") int page,
+                                                  @Query("state") String state
                                          );
+
+    @GET("midas/rank/rank.php")
+    Call<ResponseData<Rank>> getRanks();
+
+    @GET("midas/donation/list.php")
+    Call<ResponseData<List<Donation>>> getDonations(@Query("type") String type,
+                                              @Query("id") long id,
+                                              @Query("idx") int page);
 }

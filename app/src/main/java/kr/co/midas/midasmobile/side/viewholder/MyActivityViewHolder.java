@@ -40,7 +40,7 @@ public class MyActivityViewHolder extends RecyclerView.ViewHolder {
 
         mTitle.setText(voluntary.getTitle());
         mLocation.setText(voluntary.getLocation());
-        mDate.setText(voluntary.getVoluntary_date());
+        mDate.setText(voluntary.getVoluntary_date().substring(0,10));
         mSection.setText(voluntary.getSection());
         mPoint.setText(String.valueOf(voluntary.getVoluntary_time()*1000));
 

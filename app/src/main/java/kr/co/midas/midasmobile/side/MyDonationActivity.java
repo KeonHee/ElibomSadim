@@ -21,14 +21,22 @@ import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import kr.co.midas.midasmobile.R;
+import kr.co.midas.midasmobile.base.define.Define;
 import kr.co.midas.midasmobile.base.domain.Donation;
+import kr.co.midas.midasmobile.base.domain.ResponseData;
+import kr.co.midas.midasmobile.base.network.RecordService;
+import kr.co.midas.midasmobile.base.utils.SharedPreferenceUtils;
 import kr.co.midas.midasmobile.side.adapter.MyDonationAdapter;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static kr.co.midas.midasmobile.base.define.Define.SHR_PREF_CUR_POINT_KEY;
 
 
 public class MyDonationActivity extends AppCompatActivity  implements SeekBar.OnSeekBarChangeListener,
@@ -64,20 +72,40 @@ public class MyDonationActivity extends AppCompatActivity  implements SeekBar.On
         mDonationListView.setHasFixedSize(true);
 
 
-        List<Donation> list = new ArrayList<>();
-        list.add(new Donation(0,"", Calendar.getInstance().getTime(),1000,null,null,"받는곳"));
-        list.add(new Donation(0,"", Calendar.getInstance().getTime(),1000,null,null,"받는곳"));
-        list.add(new Donation(0,"", Calendar.getInstance().getTime(),1000,null,null,"받는곳"));
-        list.add(new Donation(0,"", Calendar.getInstance().getTime(),1000,null,null,"받는곳"));
-        list.add(new Donation(0,"", Calendar.getInstance().getTime(),1000,null,null,"받는곳"));
-        list.add(new Donation(0,"", Calendar.getInstance().getTime(),1000,null,null,"받는곳"));
-        list.add(new Donation(0,"", Calendar.getInstance().getTime(),1000,null,null,"받는곳"));
-        list.add(new Donation(0,"", Calendar.getInstance().getTime(),1000,null,null,"받는곳"));
-        list.add(new Donation(0,"", Calendar.getInstance().getTime(),1000,null,null,"받는곳"));
-        list.add(new Donation(0,"", Calendar.getInstance().getTime(),1000,null,null,"받는곳"));
+        long point = SharedPreferenceUtils.getLongPreference(getApplicationContext(),SHR_PREF_CUR_POINT_KEY,-1);
+        if(point!=-1){
+            mCurrentPoint.setText(String.valueOf(point) + "점 ");
+        }
+        loadData();
+    }
 
-        mMyDonationAdapter.setListData(list);
-        mCurrentPoint.setText(String.valueOf(10000) + "점 ");
+    private void loadData(){
+        RecordService recordService = RecordService.retrofit.create(RecordService.class);
+        Call<ResponseData<List<Donation>>> call = recordService.getDonations("user",2,0);
+        call.enqueue(new Callback<ResponseData<List<Donation>>>() {
+            @Override
+            public void onResponse(Call<ResponseData<List<Donation>>> call, Response<ResponseData<List<Donation>>> response) {
+                if(response.isSuccessful()){
+                    if(response.body().getCode()== Define.OK){
+                        List<Donation> list = response.body().getResult();
+
+                        setData(list);
+                        mMyDonationAdapter.setListData(list);
+                    }else {
+
+                    }
+                }else {
+
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<ResponseData<List<Donation>>> call, Throwable t) {
+
+            }
+        });
     }
 
     private void initLineChart() {
@@ -151,8 +179,6 @@ public class MyDonationActivity extends AppCompatActivity  implements SeekBar.On
 //        mv.setChartView(mChart); // For bounds control
 //        mChart.setMarker(mv); // Set the marker to the chart
 
-        setData(12, 50);
-
         // setting data
         mSeekBarY.setProgress(50);
         mSeekBarX.setProgress(12);
@@ -162,17 +188,19 @@ public class MyDonationActivity extends AppCompatActivity  implements SeekBar.On
 
     }
 
-    private void setData(int count, int range) {
+    private void setData(List<Donation> donationList) {
+        if(donationList==null || donationList.isEmpty()) return;
 
-        float start = 1f;
+        ArrayList<BarEntry> yVals1 = new ArrayList<>();
 
-        ArrayList<BarEntry> yVals1 = new ArrayList<BarEntry>();
+        float[] months ={0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f};
+        for(Donation donation : donationList){
+            int idx = Integer.parseInt(donation.getDonate_at().substring(5,6));
+            months[idx] += donation.getPoint();
+        }
 
-        for (int i = (int) start; i < start + count + 1; i++) {
-            float mult = (range + 1);
-            float val = (float) (Math.random() * mult);
-
-            yVals1.add(new BarEntry(i, val));
+        for (int i = 0; i < 12 + 1; i++) {
+            yVals1.add(new BarEntry(i+1, months[i] ));
 
         }
 

@@ -2,7 +2,6 @@ package kr.co.midas.midasmobile;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
@@ -36,6 +35,7 @@ import retrofit2.Response;
 
 import static kr.co.midas.midasmobile.base.define.Define.NOT_FOUND;
 import static kr.co.midas.midasmobile.base.define.Define.OK;
+import static kr.co.midas.midasmobile.base.define.Define.SHR_PREF_CUR_POINT_KEY;
 import static kr.co.midas.midasmobile.base.define.Define.SHR_PREF_SESSION_KEY;
 import static kr.co.midas.midasmobile.base.define.Define.SHR_PREF_USER_ID_KEY;
 
@@ -166,6 +166,8 @@ public class MainActivity extends AppCompatActivity
                     mUser = responseData.getResult();
                     bindViewNavHeader(
                             mUser.getAvatarUrl(), mUser.getUserName(),mUser.getEmail());
+
+                    SharedPreferenceUtils.setLongPreference(getApplicationContext(),SHR_PREF_CUR_POINT_KEY,mUser.getPoint());
 
                 }else if(responseData.getCode() == NOT_FOUND){
                     Log.e(TAG,"Not Found Error");
