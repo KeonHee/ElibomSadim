@@ -12,23 +12,44 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TabHost;
+import android.widget.TextView;
 
+import butterknife.ButterKnife;
+import kr.co.midas.midasmobile.base.domain.ResponseData;
+import kr.co.midas.midasmobile.base.domain.User;
 import kr.co.midas.midasmobile.base.fragments.MyHome;
+import kr.co.midas.midasmobile.base.network.LoginService;
 import kr.co.midas.midasmobile.base.utils.SharedPreferenceUtils;
 import kr.co.midas.midasmobile.side.MyInfoActivity;
 import kr.co.midas.midasmobile.side.MyTeamActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
+import static kr.co.midas.midasmobile.base.define.Define.NOT_FOUND;
+import static kr.co.midas.midasmobile.base.define.Define.OK;
 import static kr.co.midas.midasmobile.base.define.Define.SHR_PREF_SESSION_KEY;
+import static kr.co.midas.midasmobile.base.define.Define.SHR_PREF_USER_ID_KEY;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static final String TAG = "MainActivity";
+
     private TabHost tabHost;
     private ViewPager viewPager;
+
+    ImageView mNavAvatar;
+    TextView mNavUserName;
+    TextView mNavEmail;
+
+    private User mUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +58,14 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        ButterKnife.bind(this);  /// 중요!!! Acitivity 마다 안써주면 Crash 발생합니다
+        ButterKnife.bind(this);
+
+        // Load User Info & BindView
+        long uid = SharedPreferenceUtils.getLongPreference(getApplicationContext(),
+                SHR_PREF_USER_ID_KEY, -1);
+        if(uid!=-1){
+            loadUserInfo(uid);
+        }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +84,11 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View navHeaderView = navigationView.getHeaderView(0);
+
+        mNavAvatar = (ImageView) navHeaderView.findViewById(R.id.nav_avatar_iv);
+        mNavUserName = (TextView) navHeaderView.findViewById(R.id.nav_name_tv);
+        mNavEmail = (TextView) navHeaderView.findViewById(R.id.nav_email_tv);
 
         MyHome main = new MyHome();
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -76,16 +109,12 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         if (id == R.id.action_logout) {
@@ -125,4 +154,55 @@ public class MainActivity extends AppCompatActivity
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
     }
+
+    private void loadUserInfo(long uid){
+        LoginService loginService = LoginService.retrofit.create(LoginService.class);
+        Call<ResponseData<User>> call =  loginService.getUserInfo(uid);
+        call.enqueue(callback);
+    }
+
+    private Callback<ResponseData<User>> callback = new Callback<ResponseData<User>>() {
+        @Override
+        public void onResponse(Call<ResponseData<User>> call, Response<ResponseData<User>> response) {
+
+            if(response.isSuccessful()){
+                ResponseData<User> responseData = response.body();
+                if(responseData.getCode()== OK){
+                    mUser = responseData.getResult();
+                    bindViewNavHeader(
+                            mUser.getAvatarUrl(), mUser.getUserName(),mUser.getEmail());
+
+                }else if(responseData.getCode() == NOT_FOUND){
+                    Log.e(TAG,"Not Found Error");
+                    Snackbar.make(getWindow().getDecorView().getRootView(), "없는 회원입니다.", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }else {
+                    Log.e(TAG,"fail T_T");
+                    Snackbar.make(getWindow().getDecorView().getRootView(), "알수 없는 에러", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
+                }
+
+            }else{
+                Log.e(TAG, response.errorBody().toString());
+                Snackbar.make(getWindow().getDecorView().getRootView(), "서버 에러!", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+        }
+
+        @Override
+        public void onFailure(Call<ResponseData<User>> call, Throwable t) {
+            Log.e(TAG,t.getMessage());
+            Snackbar.make(getWindow().getDecorView().getRootView(), "네트워크 에러", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+        }
+    };
+
+    private void bindViewNavHeader(String avatar, String name, String email){
+
+        //mNavAvatar
+        mNavUserName.setText(name);
+        mNavEmail.setText(email);
+    }
+
+
 }

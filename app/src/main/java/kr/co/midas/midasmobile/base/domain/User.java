@@ -20,14 +20,13 @@ public class User implements Serializable {
     @SerializedName("phonenumber") private String phone;
     @SerializedName("position") private String position;
     @SerializedName("teams") private List<Team> teams;
+    @SerializedName("avatar_url") private String avatarUrl;
 
     private List<Record> records;
 
     public User(){}
 
-    public User(long id, String userName, String email, String password, long point,
-                String introduction, int contribute_rate, int age, String phone, String position,
-                List<Team> teams, List<Record> records) {
+    public User(long id, String userName, String email, String password, long point, String introduction, int contribute_rate, int age, String phone, String position, List<Team> teams, String avatarUrl, List<Record> records) {
         this.id = id;
         this.userName = userName;
         this.email = email;
@@ -39,6 +38,7 @@ public class User implements Serializable {
         this.phone = phone;
         this.position = position;
         this.teams = teams;
+        this.avatarUrl = avatarUrl;
         this.records = records;
     }
 
@@ -140,5 +140,13 @@ public class User implements Serializable {
 
     public void setRecords(List<Record> records) {
         this.records = records;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }
