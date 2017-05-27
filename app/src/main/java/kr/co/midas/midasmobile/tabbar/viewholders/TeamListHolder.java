@@ -59,7 +59,10 @@ public class TeamListHolder extends RecyclerView.ViewHolder implements View.OnCl
     public void onClick(View view) {
         if(view == teamCard){
             Intent intent = new Intent(view.getContext(), TeamDetailActivity.class);
+            intent.putExtra("imgUrl", TeamListAdapter.teamList.get(getAdapterPosition()).getLogoUrl());
+            intent.putExtra("teamPoint", TeamListAdapter.teamList.get(getAdapterPosition()).getTeamPoint());
             intent.putExtra("teamName", TeamListAdapter.teamList.get(getAdapterPosition()).getTeamName());
+            intent.putExtra("teamDesc", TeamListAdapter.teamList.get(getAdapterPosition()).getDescript());
             view.getContext().startActivity(intent);
         }
     }

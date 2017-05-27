@@ -92,7 +92,8 @@ public class DonateFragment extends Fragment implements View.OnClickListener {
 		else if (view == arrowDown){
 			String curStr = setPoint.getText().toString();
 			int value = Integer.parseInt(curStr) - 1000;
-			setPoint.setText(String.valueOf(value));
+			if(value >= 0)
+				setPoint.setText(String.valueOf(value));
 
 		}
 		else if (view == givePoint){

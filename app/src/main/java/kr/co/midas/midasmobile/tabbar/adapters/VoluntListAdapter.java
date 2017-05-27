@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.midas.midasmobile.R;
-import kr.co.midas.midasmobile.tabbar.objects.VoluntObject;
+import kr.co.midas.midasmobile.base.domain.Voluntary;
 import kr.co.midas.midasmobile.tabbar.viewholders.VoluntListHolder;
 
 /**
@@ -17,10 +17,10 @@ import kr.co.midas.midasmobile.tabbar.viewholders.VoluntListHolder;
  */
 
 public class VoluntListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    public static List<VoluntObject> voluntList;
+    public static List<Voluntary> voluntList;
     private Context context;
 
-    public VoluntListAdapter(Context context, List<VoluntObject> voluntList){
+    public VoluntListAdapter(Context context, List<Voluntary> voluntList){
         this.context = context;
         this.voluntList = new ArrayList<>();
         this.voluntList = voluntList;

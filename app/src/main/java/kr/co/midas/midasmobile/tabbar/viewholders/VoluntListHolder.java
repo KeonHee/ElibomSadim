@@ -15,8 +15,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import kr.co.midas.midasmobile.R;
 import kr.co.midas.midasmobile.VoluntDetailActivity;
+import kr.co.midas.midasmobile.base.domain.Voluntary;
 import kr.co.midas.midasmobile.tabbar.adapters.VoluntListAdapter;
-import kr.co.midas.midasmobile.tabbar.objects.VoluntObject;
 
 /**
  * Created by user on 2017-05-27.
@@ -45,17 +45,23 @@ public class VoluntListHolder extends RecyclerView.ViewHolder implements View.On
         textView.setEllipsize(TextUtils.TruncateAt.END);
     }
 
-    public void onBind(Context context, VoluntObject voluntObject){
-        Glide.with(context).load(voluntObject.getImgUrl()).into(volunImg);
-        volunTitle.setText(voluntObject.getImgTitle());
-        ptcipants.setText(voluntObject.getParticipants());
+    public void onBind(Context context, Voluntary voluntObject){
+        Glide.with(context).load(voluntObject.getImgPath()).into(volunImg);
+        volunTitle.setText(voluntObject.getTitle());
+        ptcipants.setText(voluntObject.getCurrentParticipants());
     }
 
     @Override
     public void onClick(View view) {
         if (view == voluntCard){
             Intent intent = new Intent(view.getContext(), VoluntDetailActivity.class);
-            intent.putExtra("volutTitle", VoluntListAdapter.voluntList.get(getAdapterPosition()).getImgTitle());
+            intent.putExtra("voluntImg", VoluntListAdapter.voluntList.get(getAdapterPosition()).getImgPath());
+            intent.putExtra("volutTitle", VoluntListAdapter.voluntList.get(getAdapterPosition()).getTitle());
+            intent.putExtra("maxParti", VoluntListAdapter.voluntList.get(getAdapterPosition()).getMaxParticipants());
+            intent.putExtra("partici", VoluntListAdapter.voluntList.get(getAdapterPosition()).getCurrentParticipants());
+            intent.putExtra("contents", VoluntListAdapter.voluntList.get(getAdapterPosition()).getContents());
+            intent.putExtra("date", VoluntListAdapter.voluntList.get(getAdapterPosition()).getVoluntary_date());
+
             view.getContext().startActivity(intent);
         }
 

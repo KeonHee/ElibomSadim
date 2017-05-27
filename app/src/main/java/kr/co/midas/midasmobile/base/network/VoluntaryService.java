@@ -1,5 +1,6 @@
 package kr.co.midas.midasmobile.base.network;
 
+import kr.co.midas.midasmobile.base.domain.ResponseListData;
 import kr.co.midas.midasmobile.base.domain.Voluntary;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -22,9 +23,9 @@ public interface VoluntaryService {
 
     @FormUrlEncoded
     @GET("midas/voluntary/read.php")
-    Call<Voluntary> getVoluntaryOne(@Query("vid") long vid);
+    Call<ResponseListData<Voluntary>> getVoluntaryOne(@Query("vid") long vid);
 
     @GET("midas/voluntary/list.php")
-    Call<Voluntary> getVoluntaryAll(@Query("idx") long idx);
+    Call<ResponseListData<Voluntary>> getVoluntaryAll(@Query("idx") long idx);
 
 }

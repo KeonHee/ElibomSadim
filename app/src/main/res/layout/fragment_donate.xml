@@ -58,16 +58,6 @@
             android:layout_marginRight="10dp"
             android:layout_alignTop="@+id/showDonate"
             />
-        
-
-
-        <!--<kr.co.midas.midasmobile.tabbar.animation.LikeButtonView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_gravity="center"-->
-                <!--android:id="@+id/donateBtn"-->
-                <!--/>-->
-
 
     </RelativeLayout>
 
