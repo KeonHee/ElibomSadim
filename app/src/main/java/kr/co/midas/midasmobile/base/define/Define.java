@@ -21,4 +21,10 @@ public class Define {
     public static final int OK = 200;
     public static final int NOT_FOUND = 404;
 
+    public final static String SHR_PREF_USER_ID_KEY="user_id_key";
+
+    public final static String SHR_PREF_SESSION_KEY="session";
+    public final static String SHR_PREF_EMAIL_KEY="email";
+    public final static String SHR_PREF_PW_KEY="pw";
+
 }
