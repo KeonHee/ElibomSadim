@@ -26,7 +26,6 @@ import kr.co.midas.midasmobile.base.network.LoginService;
 import kr.co.midas.midasmobile.base.utils.SharedPreferenceUtils;
 import kr.co.midas.midasmobile.side.MyActivityActivity;
 import kr.co.midas.midasmobile.side.MyDonationActivity;
-import kr.co.midas.midasmobile.side.MyInfoActivity;
 import kr.co.midas.midasmobile.side.MyTeamActivity;
 import kr.co.midas.midasmobile.tabbar.MyHome;
 import retrofit2.Call;
@@ -129,9 +128,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_info) {
-            moveToPage(MyInfoActivity.class);
-        } else if( id == R.id.nav_activity){
+        if( id == R.id.nav_activity){
             moveToPage(MyActivityActivity.class);
         } else if (id == R.id.nav_donation) {
             moveToPage(MyDonationActivity.class);
