@@ -1,4 +1,4 @@
-package kr.co.midas.midasmobile.base.fragments;
+package kr.co.midas.midasmobile.tabbar;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,13 +10,13 @@ import android.view.ViewGroup;
 import kr.co.midas.midasmobile.R;
 
 
-public class DonateFragment extends Fragment {
+public class RankFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 		
-		View v = inflater.inflate(R.layout.fragment_donate, container, false);
+		View v = inflater.inflate(R.layout.fragment_rank, container, false);
 		
 		return v;
 	}

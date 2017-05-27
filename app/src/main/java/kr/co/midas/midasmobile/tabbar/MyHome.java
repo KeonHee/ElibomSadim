@@ -1,4 +1,4 @@
-package kr.co.midas.midasmobile.base.fragments;
+package kr.co.midas.midasmobile.tabbar;
 
 import android.content.Context;
 import android.os.Bundle;

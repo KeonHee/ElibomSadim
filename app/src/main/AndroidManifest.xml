@@ -33,6 +33,8 @@
             >
         </activity>
 
+        <activity android:name=".TeamDetailActivity"/>
+
 
         <activity
             android:name=".side.MyInfoActivity"
