@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,13 @@ import java.util.List;
 
 import kr.co.midas.midasmobile.R;
 import kr.co.midas.midasmobile.base.domain.Report;
+import kr.co.midas.midasmobile.base.domain.ResponseData;
+import kr.co.midas.midasmobile.base.network.ReportService;
 import kr.co.midas.midasmobile.tabbar.adapters.ReportListAdapter;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 
 
 public class DonateFragment extends Fragment implements View.OnClickListener {
@@ -36,7 +43,7 @@ public class DonateFragment extends Fragment implements View.OnClickListener {
 		
 		View view = inflater.inflate(R.layout.fragment_donate, container, false);
 		initViews(view);
-		firstPage(view);
+
 		return view;
 	}
 
@@ -46,8 +53,6 @@ public class DonateFragment extends Fragment implements View.OnClickListener {
 		currentPoint.setText("현재 포인트 : ");
 		showDonate = (TextView) view.findViewById(R.id.showDonate);
 		showDonate.setOnClickListener(this);
-//		likeButtonView = (LikeButtonView) view.findViewById(R.id.donateBtn);
-//		likeButtonView.setOnClickListener(this);
 
 		donateDialog = new Dialog(view.getContext());
 		donateDialog.setContentView(R.layout.donate_dialog);
@@ -65,15 +70,34 @@ public class DonateFragment extends Fragment implements View.OnClickListener {
 		linearLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
 		donateRecycle.setLayoutManager(linearLayoutManager);
 
-	}
-
-	private void firstPage(View view){
-		/** 서버에서 데이터 받아와서 추가해주면 된다*/
-		reportObjects.add(new Report(1, "진행", "나" ,"22","서울","80","재밌었다","http://52.79.189.34/story/cat1.jpg"));
-
-
 		reportAdapter = new ReportListAdapter(view.getContext(), reportObjects);
 		donateRecycle.setAdapter(reportAdapter);
+
+	}
+
+	private void loadData(int page){
+		ReportService reportService = ReportService.retrofit.create(ReportService.class);
+		Call<ResponseData<List<Report>>> call = reportService.getReportAll(page);
+		call.enqueue(new Callback<ResponseData<List<Report>>>() {
+			@Override
+			public void onResponse(Call<ResponseData<List<Report>>> call, Response<ResponseData<List<Report>>> response) {
+				if(response.isSuccessful()){
+					if(response.body().getCode() == 200){
+						List<Report> reportList = response.body().getResult();
+						reportAdapter.setReportList(reportList);
+						Log.e("팀", String.valueOf(reportList));
+					}
+
+				}else{
+
+				}
+			}
+
+			@Override
+			public void onFailure(Call<ResponseData<List<Report>>> call, Throwable t) {
+
+			}
+		});
 	}
 
 	@Override

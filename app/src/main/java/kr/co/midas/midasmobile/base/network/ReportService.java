@@ -1,7 +1,9 @@
 package kr.co.midas.midasmobile.base.network;
 
+import java.util.List;
+
+import kr.co.midas.midasmobile.base.domain.Report;
 import kr.co.midas.midasmobile.base.domain.ResponseData;
-import kr.co.midas.midasmobile.base.domain.User;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -23,8 +25,8 @@ public interface ReportService {
 
     @FormUrlEncoded
     @GET("midas/report/read.php")
-    Call<ResponseData<User>> getReportOne(@Query("id") long id);
+    Call<ResponseData<List<Report>>> getReportOne(@Query("id") int id);
 
     @GET("midas/report/list.php")
-    Call<ResponseData<User>> getReportAll(@Query("idx") long idx);
+    Call<ResponseData<List<Report>>> getReportAll(@Query("idx") int idx);
 }

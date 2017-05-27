@@ -15,6 +15,7 @@
         <activity
             android:name=".LoginActivity"
             android:launchMode="singleTask"
+            android:configChanges="screenSize|orientation|keyboard|keyboardHidden"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,47 +24,55 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SignUpActivity"/>
+        <activity android:name=".SignUpActivity"
+            android:configChanges="screenSize|orientation|keyboard|keyboardHidden"/>
 
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleTask"
-            >
+            android:configChanges="screenSize|orientation|keyboard|keyboardHidden">
         </activity>
 
-        <activity android:name=".TeamDetailActivity"/>
+        <activity android:name=".TeamDetailActivity"
+            android:configChanges="screenSize|orientation|keyboard|keyboardHidden"/>
 
-        <activity android:name=".VoluntDetailActivity"/>
+        <activity android:name=".VoluntDetailActivity"
+            android:configChanges="screenSize|orientation|keyboard|keyboardHidden"/>
 
-        <activity android:name=".ReportDetailActivity"/>
+        <activity android:name=".ReportDetailActivity"
+            android:configChanges="screenSize|orientation|keyboard|keyboardHidden"/>
 
 
         <activity
             android:name=".side.MyInfoActivity"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:configChanges="screenSize|orientation|keyboard|keyboardHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".side.MyActivityActivity"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:configChanges="screenSize|orientation|keyboard|keyboardHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".side.MyDonationActivity"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:configChanges="screenSize|orientation|keyboard|keyboardHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
         <activity
             android:name=".side.MyTeamActivity"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:configChanges="screenSize|orientation|keyboard|keyboardHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />

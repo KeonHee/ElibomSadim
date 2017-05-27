@@ -15,7 +15,7 @@ public class Team {
     @SerializedName("team_point") private long point;
     @SerializedName("create_at") private String create_at;
     @SerializedName("users") private List<User> users;
-    @SerializedName("avatar_url") private String avatarUrl;
+    @SerializedName("avartar_url") private String avatarUrl;
 
     private List<Voluntary> voluntaries;
 

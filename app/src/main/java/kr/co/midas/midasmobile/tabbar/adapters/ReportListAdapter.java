@@ -42,4 +42,10 @@ public class ReportListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public int getItemCount() {
         return reportList.size();
     }
+
+    public void setReportList(List<Report> reports){
+        reportList.clear();
+        reportList.addAll(reports);
+        notifyDataSetChanged();
+    }
 }
