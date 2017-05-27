@@ -26,5 +26,6 @@ public class Define {
     public final static String SHR_PREF_SESSION_KEY="session";
     public final static String SHR_PREF_EMAIL_KEY="email";
     public final static String SHR_PREF_PW_KEY="pw";
+    public final static String SHR_PREF_CUR_POINT_KEY="cur-point";
 
 }

@@ -31,6 +31,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="1등"
+                android:textSize="16sp"
                 />
             <TextView
                 android:id="@+id/name1"
@@ -40,6 +41,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="8dp"
                 android:text="팀 이름1"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 />
             <TextView
                 android:id="@+id/point1"
@@ -49,6 +52,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="8dp"
                 android:text="100,000점"
+                android:textSize="16sp"
+                android:textStyle="bold"
                 />
         </RelativeLayout>
         <View
@@ -70,7 +75,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="1등"
+                android:text="2등"
+                android:textSize="16sp"
                 />
             <TextView
                 android:id="@+id/name2"
@@ -80,6 +86,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="8dp"
                 android:text="팀 이름1"
+                android:textSize="16sp"
                 />
             <TextView
                 android:id="@+id/point2"
@@ -89,6 +96,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="8dp"
                 android:text="100,000점"
+                android:textSize="16sp"
                 />
         </RelativeLayout>
         <View
@@ -110,7 +118,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="1등"
+                android:text="3등"
+                android:textSize="16sp"
                 />
             <TextView
                 android:id="@+id/name3"
@@ -120,6 +129,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="8dp"
                 android:text="팀 이름1"
+                android:textSize="16sp"
                 />
             <TextView
                 android:id="@+id/point3"
@@ -129,6 +139,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="8dp"
                 android:text="100,000점"
+                android:textSize="16sp"
                 />
         </RelativeLayout>
         <View
@@ -150,7 +161,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="1등"
+                android:text="4등"
+                android:textSize="16sp"
                 />
             <TextView
                 android:id="@+id/name4"
@@ -160,6 +172,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="8dp"
                 android:text="팀 이름1"
+                android:textSize="16sp"
                 />
             <TextView
                 android:id="@+id/point4"
@@ -169,6 +182,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="8dp"
                 android:text="100,000점"
+                android:textSize="16sp"
                 />
         </RelativeLayout>
         <View
@@ -190,7 +204,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
-                android:text="1등"
+                android:text="5등"
+                android:textSize="16sp"
                 />
             <TextView
                 android:id="@+id/name5"
@@ -200,6 +215,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="8dp"
                 android:text="팀 이름1"
+                android:textSize="16sp"
                 />
             <TextView
                 android:id="@+id/point5"
@@ -209,6 +225,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="8dp"
                 android:text="100,000점"
+                android:textSize="16sp"
                 />
         </RelativeLayout>
 
