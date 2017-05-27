@@ -11,8 +11,9 @@
         <LinearLayout
             android:id="@+id/pie_chart_container"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="300dp"
             android:orientation="vertical"
+            android:padding="16dp"
             >
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/section_chart"

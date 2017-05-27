@@ -1,35 +1,24 @@
 package kr.co.midas.midasmobile.base.domain;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
-import java.util.Date;
 
 public class Voluntary implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private long id;
-    private String location;
-    private String title;
-    private String contents;
-    private String section;
-    private Date voluntary_date;
-    private int voluntary_time;
-    private int maxParticipants;
-    private int currentParticipants;
+    @SerializedName("location") private String location;
+    @SerializedName("title") private String title;
+    @SerializedName("contents") private String contents;
+    @SerializedName("section") private String section;
+    @SerializedName("voluntary_date") private String voluntary_date;
+    @SerializedName("voluntary_time") private int voluntary_time;
+    @SerializedName("max_participants") private int maxParticipants;
+    @SerializedName("current_participants") private int currentParticipants;
 
     public Voluntary(){}
-
-    public Voluntary(long id, String location, String title, String contents, String section, Date voluntary_date, int voluntary_time, int maxParticipants, int currentParticipants) {
-        this.id = id;
-        this.location = location;
-        this.title = title;
-        this.contents = contents;
-        this.section = section;
-        this.voluntary_date = voluntary_date;
-        this.voluntary_time = voluntary_time;
-        this.maxParticipants = maxParticipants;
-        this.currentParticipants = currentParticipants;
-    }
 
     public long getId() {
         return id;
@@ -63,11 +52,19 @@ public class Voluntary implements Serializable {
         this.contents = contents;
     }
 
-    public Date getVoluntary_date() {
+    public String getSection() {
+        return section;
+    }
+
+    public void setSection(String section) {
+        this.section = section;
+    }
+
+    public String getVoluntary_date() {
         return voluntary_date;
     }
 
-    public void setVoluntary_date(Date voluntary_date) {
+    public void setVoluntary_date(String voluntary_date) {
         this.voluntary_date = voluntary_date;
     }
 
@@ -93,13 +90,5 @@ public class Voluntary implements Serializable {
 
     public void setCurrentParticipants(int currentParticipants) {
         this.currentParticipants = currentParticipants;
-    }
-
-    public String getSection() {
-        return section;
-    }
-
-    public void setSection(String section) {
-        this.section = section;
     }
 }
