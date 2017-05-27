@@ -1,5 +1,7 @@
 package kr.co.midas.midasmobile.base.domain;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -7,18 +9,18 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    //@SerializedName("user_id")
-    private long id;
-    private String userName;
-    private String email;
-    private String password;
-    private long point;
-    private String introduction;
-    private int contribute_rate;
-    private int age;
-    private String phone;
-    private String position;
-    private List<Team> teams;
+    @SerializedName("user_id") private long id;
+    @SerializedName("name") private String userName;
+    @SerializedName("email") private String email;
+    @SerializedName("pw") private String password;
+    @SerializedName("point") private long point;
+    @SerializedName("introduction") private String introduction;
+    @SerializedName("contribute") private int contribute_rate;
+    @SerializedName("age") private int age;
+    @SerializedName("phonenumber") private String phone;
+    @SerializedName("position") private String position;
+    @SerializedName("teams") private List<Team> teams;
+
     private List<Record> records;
 
     public User(){}

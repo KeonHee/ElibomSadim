@@ -18,14 +18,16 @@ import android.view.View;
 import android.widget.TabHost;
 
 import kr.co.midas.midasmobile.tabbar.MyHome;
+
+import kr.co.midas.midasmobile.base.utils.SharedPreferenceUtils;
+
 import kr.co.midas.midasmobile.side.MyInfoActivity;
 import kr.co.midas.midasmobile.side.MyTeamActivity;
 
+import static kr.co.midas.midasmobile.base.define.Define.SHR_PREF_SESSION_KEY;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-//    @BindView(R.id.testText)
-//    TextView mTextView;
 
     private TabHost tabHost;
     private ViewPager viewPager;
@@ -88,9 +90,13 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_logout) { //로그아웃 시켜야
-            moveToPage(LoginActivity.class);
+        if (id == R.id.action_logout) {
+            SharedPreferenceUtils.setBooleanPreference(getApplicationContext(), SHR_PREF_SESSION_KEY, false);
+
+            final Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+            finish();
             return true;
         }
 
