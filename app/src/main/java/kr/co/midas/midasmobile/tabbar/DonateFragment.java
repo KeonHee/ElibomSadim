@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import kr.co.midas.midasmobile.R;
@@ -70,7 +69,7 @@ public class DonateFragment extends Fragment implements View.OnClickListener {
 
 	private void firstPage(View view){
 		/** 서버에서 데이터 받아와서 추가해주면 된다*/
-		reportObjects.add(new Report(1, "진행", "나" ,new Date(),"서울","80","재밌었다","http://52.79.189.34/story/cat1.jpg"));
+		reportObjects.add(new Report(1, "진행", "나" ,"22","서울","80","재밌었다","http://52.79.189.34/story/cat1.jpg"));
 
 
 		reportAdapter = new ReportListAdapter(view.getContext(), reportObjects);

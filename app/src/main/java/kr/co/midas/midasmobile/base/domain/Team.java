@@ -3,7 +3,6 @@ package kr.co.midas.midasmobile.base.domain;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.Date;
 import java.util.List;
 
 public class Team {
@@ -14,7 +13,7 @@ public class Team {
     @SerializedName("team_name") private String teamName;
     @SerializedName("description") private String description;
     @SerializedName("team_point") private long point;
-    @SerializedName("create_at") private Date create_at;
+    @SerializedName("create_at") private String create_at;
     @SerializedName("users") private List<User> users;
     @SerializedName("avatar_url") private String avatarUrl;
 
@@ -22,9 +21,8 @@ public class Team {
 
     public Team(){}
 
-    public Team(long id, String teamName, String description, long point,
-                Date create_at, List<User> users, String avatarUrl,
-                List<Voluntary> voluntaries) {
+
+    public Team(long id, String teamName, String description, long point, String create_at, List<User> users, String avatarUrl, List<Voluntary> voluntaries) {
         this.id = id;
         this.teamName = teamName;
         this.description = description;
@@ -33,10 +31,6 @@ public class Team {
         this.users = users;
         this.avatarUrl = avatarUrl;
         this.voluntaries = voluntaries;
-    }
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
     }
 
     public long getId() {
@@ -71,11 +65,11 @@ public class Team {
         this.point = point;
     }
 
-    public Date getCreate_at() {
+    public String getCreate_at() {
         return create_at;
     }
 
-    public void setCreate_at(Date create_at) {
+    public void setCreate_at(String create_at) {
         this.create_at = create_at;
     }
 
@@ -87,19 +81,19 @@ public class Team {
         this.users = users;
     }
 
-    public List<Voluntary> getVoluntaries() {
-        return voluntaries;
-    }
-
-    public void setVoluntaries(List<Voluntary> voluntaries) {
-        this.voluntaries = voluntaries;
-    }
-
     public String getAvatarUrl() {
         return avatarUrl;
     }
 
     public void setAvatarUrl(String avatarUrl) {
         this.avatarUrl = avatarUrl;
+    }
+
+    public List<Voluntary> getVoluntaries() {
+        return voluntaries;
+    }
+
+    public void setVoluntaries(List<Voluntary> voluntaries) {
+        this.voluntaries = voluntaries;
     }
 }

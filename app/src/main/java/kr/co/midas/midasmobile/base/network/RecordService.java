@@ -29,7 +29,7 @@ public interface RecordService {
                                                   @Query("state") String state
                                          );
 
-    @GET("midas/rank.php")
+    @GET("midas/rank/rank.php")
     Call<ResponseData<Rank>> getRanks();
 
     @GET("midas/donation/list.php")

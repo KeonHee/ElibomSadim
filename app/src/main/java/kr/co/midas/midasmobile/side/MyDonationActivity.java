@@ -195,7 +195,7 @@ public class MyDonationActivity extends AppCompatActivity  implements SeekBar.On
 
         float[] months ={0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f};
         for(Donation donation : donationList){
-            int idx = donation.getDonate_at().getMonth();
+            int idx = Integer.parseInt(donation.getDonate_at().substring(5,6));
             months[idx] += donation.getPoint();
         }
 
