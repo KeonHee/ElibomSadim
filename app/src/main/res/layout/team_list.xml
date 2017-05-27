@@ -40,13 +40,12 @@
 
 
         <TextView
-            android:id="@+id/team_descript"
             style="@style/TeamTextView"
+            android:layout_marginTop="10dp"
+            android:id="@+id/team_descript"
             android:textColor="@color/black"
             android:layout_toRightOf="@+id/teamlogo"
             android:layout_below="@+id/team_name"
-
-            android:layout_alignBaseline="@+id/team_point"
             />
 
     </RelativeLayout>

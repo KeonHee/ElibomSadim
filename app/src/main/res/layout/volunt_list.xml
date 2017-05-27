@@ -16,27 +16,26 @@
         <ImageView
             android:id="@+id/volunImg"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="100dp"
+            android:layout_height="200dp"
+            android:scaleType="fitXY"
              />
 
         <TextView
             android:id="@+id/volunTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:textColor="@color/black"
             android:gravity="center"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginBottom="67dp" />
+            android:layout_below="@+id/volunImg"
+            android:layout_marginTop="10dp"/>
 
         <TextView
             android:id="@+id/ptcipants"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@+id/volunTitle"
             android:textColor="@color/black"
-            android:layout_marginTop="@dimen/text_margin"
-            android:layout_alignParentBottom="true"
+            android:layout_marginRight="10dp"
             android:gravity="right"
             />
 

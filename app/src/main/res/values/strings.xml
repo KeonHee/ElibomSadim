@@ -11,4 +11,5 @@
     <string name="rank_input">직급을 입력해 주세요.</string>
     <string name="signup">회원가입</string>
     <string name="logout">로그아웃</string>
+    <string name="volunt_search">나에게 맞는 봉사 활동 검색</string>
 </resources>

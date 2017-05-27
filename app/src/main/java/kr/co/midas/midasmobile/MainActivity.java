@@ -20,19 +20,14 @@ import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
 
-
 import butterknife.ButterKnife;
 import kr.co.midas.midasmobile.base.domain.ResponseData;
 import kr.co.midas.midasmobile.base.domain.User;
-import kr.co.midas.midasmobile.base.fragments.MyHome;
 import kr.co.midas.midasmobile.base.network.LoginService;
-
-import kr.co.midas.midasmobile.tabbar.MyHome;
-
 import kr.co.midas.midasmobile.base.utils.SharedPreferenceUtils;
-
 import kr.co.midas.midasmobile.side.MyInfoActivity;
 import kr.co.midas.midasmobile.side.MyTeamActivity;
+import kr.co.midas.midasmobile.tabbar.MyHome;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
