@@ -6,10 +6,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import static kr.co.midas.midasmobile.base.data.TestContract.*;
 
-/**
- * Created by user on 2017-05-26.
- */
-
 public class TestDbHelper extends SQLiteOpenHelper {
 
     // The database name
