@@ -11,8 +11,6 @@ import android.text.TextUtils;
 
 public class SharedPreferenceUtils {
 
-    public final static String USER_KEY="user_key";
-
     private SharedPreferenceUtils() {}
 
     public static String getStringPreference(Context context, String key) {

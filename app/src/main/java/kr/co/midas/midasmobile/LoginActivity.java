@@ -15,14 +15,17 @@ import butterknife.ButterKnife;
 import kr.co.midas.midasmobile.base.domain.ResponseData;
 import kr.co.midas.midasmobile.base.domain.User;
 import kr.co.midas.midasmobile.base.network.LoginService;
+import kr.co.midas.midasmobile.base.utils.SharedPreferenceUtils;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 import static kr.co.midas.midasmobile.base.define.Define.NOT_FOUND;
 import static kr.co.midas.midasmobile.base.define.Define.OK;
-import static kr.co.midas.midasmobile.base.utils.SharedPreferenceUtils.USER_KEY;
-import static kr.co.midas.midasmobile.base.utils.SharedPreferenceUtils.setLongPreference;
+import static kr.co.midas.midasmobile.base.define.Define.SHR_PREF_EMAIL_KEY;
+import static kr.co.midas.midasmobile.base.define.Define.SHR_PREF_PW_KEY;
+import static kr.co.midas.midasmobile.base.define.Define.SHR_PREF_SESSION_KEY;
+import static kr.co.midas.midasmobile.base.define.Define.SHR_PREF_USER_ID_KEY;
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -42,6 +45,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        // 자동 로그인
+        if(SharedPreferenceUtils.getBooleanPreference(getApplicationContext(),
+                SHR_PREF_SESSION_KEY, false)){
+            moveToPage(MainActivity.class);
+        }
 
         ButterKnife.bind(this);
         loginImg.setOnClickListener(this);
@@ -65,6 +74,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         final Intent intent = new Intent(getApplicationContext(), destActivity);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
+        finish();
     }
     private boolean validateEmail(View v, String email){
         if(!email.contains("@")){
@@ -99,7 +109,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     long uid = responseData.getResult().getId();
                     Log.d(TAG, String.valueOf(uid));
 
-                    setLongPreference(getApplicationContext(), USER_KEY, uid);
+                    // save uid
+                    SharedPreferenceUtils.setLongPreference(getApplicationContext(), SHR_PREF_USER_ID_KEY, uid);
+
+                    // session on
+                    SharedPreferenceUtils.setBooleanPreference(getApplicationContext(),
+                            SHR_PREF_SESSION_KEY, true);
+                    // save user info
+                    SharedPreferenceUtils.setStringPreference(getApplicationContext(),
+                            SHR_PREF_EMAIL_KEY, editEmail.getText().toString().trim());
+                    SharedPreferenceUtils.setStringPreference(getApplicationContext(),
+                            SHR_PREF_PW_KEY, editPwd.getText().toString().trim());
+
+
                     moveToPage(MainActivity.class);
                 }else if(responseData.getCode() == NOT_FOUND){
                     Log.e(TAG,"Not Found Error");
