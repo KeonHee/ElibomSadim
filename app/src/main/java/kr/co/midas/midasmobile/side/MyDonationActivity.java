@@ -193,13 +193,13 @@ public class MyDonationActivity extends AppCompatActivity  implements SeekBar.On
 
         ArrayList<BarEntry> yVals1 = new ArrayList<>();
 
-        float[] months ={0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f};
+        float[] months ={0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f};
         for(Donation donation : donationList){
             int idx = Integer.parseInt(donation.getDonate_at().substring(5,6));
             months[idx] += donation.getPoint();
         }
 
-        for (int i = 0; i < 12 + 1; i++) {
+        for (int i = 0; i < 12; i++) {
             yVals1.add(new BarEntry(i+1, months[i] ));
 
         }
