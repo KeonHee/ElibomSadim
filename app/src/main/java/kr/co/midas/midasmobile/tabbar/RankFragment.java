@@ -127,6 +127,12 @@ public class RankFragment extends Fragment implements SeekBar.OnSeekBarChangeLis
 		return v;
 	}
 
+	@Override
+	public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
+		loadData();
+	}
+
 	private void loadData(){
 		RecordService recordService = RecordService.retrofit.create(RecordService.class);
 		Call<ResponseData<Rank>> call= recordService.getRanks();
