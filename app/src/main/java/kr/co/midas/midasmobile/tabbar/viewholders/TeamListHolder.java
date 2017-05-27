@@ -1,6 +1,8 @@
 package kr.co.midas.midasmobile.tabbar.viewholders;
 
+import android.content.Context;
 import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
@@ -29,25 +31,25 @@ public class TeamListHolder extends RecyclerView.ViewHolder implements View.OnCl
     TextView teamDesc;
     @BindView(R.id.team_point)
     TextView teamPoint;
+    @BindView(R.id.team_card)
+    CardView teamCard;
 
-    private View view;
 
     public TeamListHolder(View itemView) {
         super(itemView);
-        view = itemView;
-        ButterKnife.bind(this, view);
+
+        ButterKnife.bind(this, itemView);
         setPrefTextView(teamDesc);
+        teamCard.setOnClickListener(this);
     }
 
     private void setPrefTextView(TextView textView){
-
         textView.setMaxLines(3);
         textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setOnClickListener(this);
     }
 
-    public void onBind(TeamObject teamObject){
-        Glide.with(view.getContext()).load(teamObject.getLogoUrl()).into(teamLogo);
+    public void onBind(Context context, TeamObject teamObject){
+        Glide.with(context).load(teamObject.getLogoUrl()).into(teamLogo);
         teamName.setText(teamObject.getTeamName());
         teamDesc.setText(teamObject.getDescript());
         teamPoint.setText(String.valueOf(teamObject.getTeamPoint()));
@@ -55,8 +57,10 @@ public class TeamListHolder extends RecyclerView.ViewHolder implements View.OnCl
 
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(view.getContext(), TeamDetailActivity.class);
-        intent.putExtra("teamName", TeamListAdapter.teamList.get(getAdapterPosition()).getTeamName());
-        view.getContext().startActivity(intent);
+        if(view == teamCard){
+            Intent intent = new Intent(view.getContext(), TeamDetailActivity.class);
+            intent.putExtra("teamName", TeamListAdapter.teamList.get(getAdapterPosition()).getTeamName());
+            view.getContext().startActivity(intent);
+        }
     }
 }

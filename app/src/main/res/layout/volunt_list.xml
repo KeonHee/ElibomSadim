@@ -2,7 +2,7 @@
 <android.support.v7.widget.CardView
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/team_card"
+    android:id="@+id/volunt_card"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     card_view:cardUseCompatPadding="true"
@@ -14,39 +14,30 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/teamlogo"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="20dp"
+            android:id="@+id/volunImg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="100dp"
              />
 
         <TextView
-            android:id="@+id/team_point"
-            android:layout_width="100dp"
+            android:id="@+id/volunTitle"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:layout_below="@+id/teamlogo"
-            android:layout_marginTop="10dp"
             android:gravity="center"
-            />
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="67dp" />
 
         <TextView
-            android:id="@+id/team_name"
-            style="@style/TeamTextView"
+            android:id="@+id/ptcipants"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:layout_marginTop="@dimen/text_margin"
-            android:layout_toRightOf="@+id/teamlogo"
-            />
-
-
-        <TextView
-            android:id="@+id/team_descript"
-            style="@style/TeamTextView"
-            android:textColor="@color/black"
-            android:layout_toRightOf="@+id/teamlogo"
-            android:layout_below="@+id/team_name"
-
-            android:layout_alignBaseline="@+id/team_point"
+            android:layout_alignParentBottom="true"
+            android:gravity="right"
             />
 
     </RelativeLayout>

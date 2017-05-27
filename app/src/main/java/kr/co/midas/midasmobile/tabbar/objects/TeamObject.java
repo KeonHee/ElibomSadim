@@ -5,10 +5,10 @@ package kr.co.midas.midasmobile.tabbar.objects;
  */
 
 public class TeamObject {
-    String logoUrl;
-    String teamName;
-    String descript;
-    int teamPoint;
+    private String logoUrl;
+    private String teamName;
+    private String descript;
+    private int teamPoint;
 
 
     public TeamObject(String logoUrl, String teamName, String descript, int teamPoint){

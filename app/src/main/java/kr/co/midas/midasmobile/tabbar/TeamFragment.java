@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import kr.co.midas.midasmobile.R;
 import kr.co.midas.midasmobile.tabbar.adapters.TeamListAdapter;
@@ -20,33 +21,36 @@ public class TeamFragment extends Fragment {
 	private RecyclerView teamView;
 	private TeamListAdapter teamListAdapter;
 	private LinearLayoutManager linearLayoutManager;
-	private ArrayList<TeamObject> teamObjects;
-	private View view;
+	private List<TeamObject> teamObjects;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater,
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-		
-		view = inflater.inflate(R.layout.fragment_team, container, false);
-		initViews();
 
-		/** 서버에서 데이터 받아와서 추가해주면 된다*/
-//		teamObjects.add(new TeamObject("http://", "나","나를 맞춰봐" ,1));
-
-
-		teamListAdapter = new TeamListAdapter(getActivity().getApplicationContext(), teamObjects);
-		teamView.setAdapter(teamListAdapter);
-		
+		View view = inflater.inflate(R.layout.fragment_team, container, false);
+		initViews(view);
+		firstPage(view);
 		return view;
 	}
 
-	private void initViews(){
+	private void initViews(View view){
 		teamView = (RecyclerView) view.findViewById(R.id.teamRecycle);
 		teamView.setHasFixedSize(true);
 		teamObjects = new ArrayList<>();
 		linearLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
 		teamView.setLayoutManager(linearLayoutManager);
 
+	}
 
+	private void firstPage(View view){
+		/** 서버에서 데이터 받아와서 추가해주면 된다*/
+		teamObjects.add(new TeamObject("http://52.79.189.34/story/cat1.jpg", "나","나를 맞춰봐" ,1));
+		teamObjects.add(new TeamObject("http://52.79.189.34/story/cat2.jpg", "나","나를 맞춰봐" ,1));
+		teamObjects.add(new TeamObject("http://52.79.189.34/story/cat3.jpg", "나","나를 맞춰봐" ,1));
+		teamObjects.add(new TeamObject("http://52.79.189.34/story/cat4.jpg", "나","나를 맞춰봐" ,1));
+		teamObjects.add(new TeamObject("http://52.79.189.34/story/cat5.jpg", "나","나를 맞춰봐" ,1));
+
+		teamListAdapter = new TeamListAdapter(view.getContext(), teamObjects);
+		teamView.setAdapter(teamListAdapter);
 	}
 }

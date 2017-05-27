@@ -17,6 +17,7 @@ import android.widget.TabHost.TabContentFactory;
 import java.util.List;
 import java.util.Vector;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import kr.co.midas.midasmobile.R;
 import kr.co.midas.midasmobile.base.adapters.MyFragmentPagerAdapter;
@@ -24,13 +25,13 @@ import kr.co.midas.midasmobile.base.adapters.MyFragmentPagerAdapter;
 public class MyHome extends Fragment implements OnTabChangeListener,
         OnPageChangeListener {
 
-//	@BindView(R.id.tabHost)
+	@BindView(R.id.tabHost)
 	TabHost tabHost;
-//	@BindView(R.id.viewPager)
+	@BindView(R.id.viewPager)
 	ViewPager viewPager;
-	MyFragmentPagerAdapter myViewPagerAdapter;
-	int i = 0;
-	View view;
+	private MyFragmentPagerAdapter myViewPagerAdapter;
+	private int i = 0;
+	private View view;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater,
@@ -39,7 +40,7 @@ public class MyHome extends Fragment implements OnTabChangeListener,
 		view = inflater.inflate(R.layout.tabs_viewpager_layout, container, false);
 
 		i++;
-		ButterKnife.bind(this.view);
+		ButterKnife.bind(this, view);
 		// tabhost 설정
 		this.initializeTabHost(savedInstanceState);
 		// ViewPager 설정
@@ -76,7 +77,7 @@ public class MyHome extends Fragment implements OnTabChangeListener,
 
 		this.myViewPagerAdapter = new MyFragmentPagerAdapter(
 				getChildFragmentManager(), fragments);
-		this.viewPager = (ViewPager) view.findViewById(R.id.viewPager);
+
 		this.viewPager.setAdapter(this.myViewPagerAdapter);
 		this.viewPager.setOnPageChangeListener(this);
 
@@ -84,9 +85,7 @@ public class MyHome extends Fragment implements OnTabChangeListener,
 
 	private void initializeTabHost(Bundle args) {
 
-		tabHost = (TabHost) view.findViewById(R.id.tabHost);
 		tabHost.setup();
-
 		for (int i = 1; i <= 4; i++) {
 
 			TabHost.TabSpec tabSpec;
