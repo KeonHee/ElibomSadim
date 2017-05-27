@@ -22,16 +22,8 @@ import java.util.List;
 
 import kr.co.midas.midasmobile.R;
 import kr.co.midas.midasmobile.VoluntDetailActivity;
-import kr.co.midas.midasmobile.base.domain.ResponseListData;
 import kr.co.midas.midasmobile.base.domain.Voluntary;
-import kr.co.midas.midasmobile.base.network.VoluntaryService;
 import kr.co.midas.midasmobile.tabbar.adapters.VoluntListAdapter;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-import static kr.co.midas.midasmobile.base.define.Define.NOT_FOUND;
-import static kr.co.midas.midasmobile.base.define.Define.OK;
 
 
 public class VoluntFragment extends Fragment {
@@ -51,7 +43,7 @@ public class VoluntFragment extends Fragment {
 		View view = inflater.inflate(R.layout.fragment_volunt, container, false);
 		initViews(view);
 //		firstPage(view);
-		login(0);
+//		login(0);
 		return view;
 	}
 
@@ -64,40 +56,41 @@ public class VoluntFragment extends Fragment {
 
 		setHasOptionsMenu(true);
 	}
+//
+//	private void login(long idx){
+//		VoluntaryService loginService = VoluntaryService.retrofit.create(VoluntaryService.class);
+//		Call<ResponseListData<Voluntary>> call = loginService.getVoluntaryAll(idx);
+//		call.enqueue(callback);
+//	}
 
-	private void login(long idx){
-		VoluntaryService loginService = VoluntaryService.retrofit.create(VoluntaryService.class);
-		Call<ResponseListData<Voluntary>> call = loginService.getVoluntaryAll(idx);
-		call.enqueue(callback);
-	}
-
-	private Callback<ResponseListData<Voluntary>> callback = new Callback<ResponseListData<Voluntary>>() {
-		@Override
-		public void onResponse(Call<ResponseListData<Voluntary>> call, Response<ResponseListData<Voluntary>> response) {
-			if (response.isSuccessful()){
-				ResponseListData<Voluntary> responseData = response.body();
-				if(responseData.getCode()== OK){
-					String uid = String.valueOf(responseData.getResult());
-					Log.d(TAG, String.valueOf(uid));
-
-				}else if(responseData.getCode() == NOT_FOUND){
-					Log.e(TAG,"Not Found Error");
-
-				}else {
-					Log.e(TAG,"fail T_T");
-
-				}
-			}else {
-				Log.e(TAG, response.errorBody().toString());
-			}
-		}
-
-		@Override
-		public void onFailure(Call<ResponseListData<Voluntary>> call, Throwable t) {
-			Log.e(TAG,t.getMessage());
-
-		}
-	};
+//
+//	private Callback<ResponseListData<Voluntary>> callback = new Callback<ResponseListData<Voluntary>>() {
+//		@Override
+//		public void onResponse(Call<ResponseListData<Voluntary>> call, Response<ResponseListData<Voluntary>> response) {
+//			if (response.isSuccessful()){
+//				ResponseListData<Voluntary> responseData = response.body();
+//				if(responseData.getCode()== OK){
+//					String uid = String.valueOf(responseData.getResult());
+//					Log.d(TAG, String.valueOf(uid));
+//
+//				}else if(responseData.getCode() == NOT_FOUND){
+//					Log.e(TAG,"Not Found Error");
+//
+//				}else {
+//					Log.e(TAG,"fail T_T");
+//
+//				}
+//			}else {
+//				Log.e(TAG, response.errorBody().toString());
+//			}
+//		}
+//
+//		@Override
+//		public void onFailure(Call<ResponseListData<Voluntary>> call, Throwable t) {
+//			Log.e(TAG,t.getMessage());
+//
+//		}
+//	};
 
 	private void firstPage(View view){
 //		voluntObjects.add(new VoluntObject("http://52.79.189.34/story/cat1.jpg", "야", "2", null));
