@@ -1,14 +1,160 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="Fragment 1" />
+        <LinearLayout
+            android:id="@+id/pie_chart_container"
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:orientation="vertical"
+            >
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/section_chart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/seekBar1" />
 
-</LinearLayout>
+            <SeekBar
+                android:id="@+id/seekBar2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="8dp"
+                android:layout_toLeftOf="@+id/tvYMax"
+                android:layout_marginRight="5dp"
+                android:max="200"
+                android:paddingBottom="12dp" />
+
+            <SeekBar
+                android:id="@+id/seekBar1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/seekBar2"
+                android:layout_margin="8dp"
+                android:layout_marginBottom="35dp"
+                android:layout_toLeftOf="@+id/tvXMax"
+                android:layout_marginRight="5dp"
+                android:max="25"
+                android:paddingBottom="12dp" />
+
+            <TextView
+                android:id="@+id/tvXMax"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/seekBar1"
+                android:layout_alignParentRight="true"
+                android:text="500"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="10dp"
+                android:gravity="right"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/tvYMax"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/seekBar2"
+                android:layout_alignParentRight="true"
+                android:text="500"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="10dp"
+                android:gravity="right"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="팀 Point Top5"
+            />
+        <include
+            layout="@layout/rank_cardview"
+            android:id="@+id/team_rank_layout_cardview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사원 Point Top5"
+            />
+        <include
+            layout="@layout/rank_cardview"
+            android:id="@+id/user_rank_layout_cardview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:orientation="vertical"
+            >
+
+            <com.github.mikephil.charting.charts.HorizontalBarChart
+                android:id="@+id/total_chart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:layout_above="@+id/seekBar1" />
+
+            <SeekBar
+                android:id="@+id/horizontal_seekBar2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_margin="8dp"
+                android:layout_toLeftOf="@+id/horizontal_tvYMax"
+                android:layout_marginRight="5dp"
+                android:max="200"
+                android:paddingBottom="12dp" />
+
+            <SeekBar
+                android:id="@+id/horizontal_seekBar1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/seekBar2"
+                android:layout_margin="8dp"
+                android:layout_marginBottom="35dp"
+                android:layout_toLeftOf="@+id/horizontal_tvXMax"
+                android:layout_marginRight="5dp"
+                android:max="500"
+                android:paddingBottom="12dp" />
+
+            <TextView
+                android:id="@+id/horizontal_tvXMax"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/horizontal_seekBar1"
+                android:layout_alignParentRight="true"
+                android:text="500"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="10dp"
+                android:gravity="right"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/horizontal_tvYMax"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/horizontal_seekBar2"
+                android:layout_alignParentRight="true"
+                android:text="500"
+                android:layout_marginBottom="15dp"
+                android:layout_marginRight="10dp"
+                android:gravity="right"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>

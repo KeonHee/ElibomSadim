@@ -16,18 +16,22 @@ public class Team {
     @SerializedName("team_point") private long point;
     @SerializedName("create_at") private Date create_at;
     @SerializedName("users") private List<User> users;
+    @SerializedName("avatar_url") private String avatarUrl;
 
     private List<Voluntary> voluntaries;
 
     public Team(){}
 
-    public Team(long id, String teamName, String description, long point, Date create_at, List<User> users, List<Voluntary> voluntaries) {
+    public Team(long id, String teamName, String description, long point,
+                Date create_at, List<User> users, String avatarUrl,
+                List<Voluntary> voluntaries) {
         this.id = id;
         this.teamName = teamName;
         this.description = description;
         this.point = point;
         this.create_at = create_at;
         this.users = users;
+        this.avatarUrl = avatarUrl;
         this.voluntaries = voluntaries;
     }
 
@@ -89,5 +93,13 @@ public class Team {
 
     public void setVoluntaries(List<Voluntary> voluntaries) {
         this.voluntaries = voluntaries;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }

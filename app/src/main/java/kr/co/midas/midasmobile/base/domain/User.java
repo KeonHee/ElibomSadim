@@ -26,7 +26,10 @@ public class User implements Serializable {
 
     public User(){}
 
-    public User(long id, String userName, String email, String password, long point, String introduction, int contribute_rate, int age, String phone, String position, List<Team> teams, String avatarUrl, List<Record> records) {
+    public User(long id, String userName, String email, String password,
+                long point, String introduction, int contribute_rate,
+                int age, String phone, String position, List<Team> teams,
+                String avatarUrl, List<Record> records) {
         this.id = id;
         this.userName = userName;
         this.email = email;
