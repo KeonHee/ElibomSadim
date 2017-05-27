@@ -22,14 +22,14 @@ import java.util.List;
 
 import kr.co.midas.midasmobile.R;
 import kr.co.midas.midasmobile.VoluntDetailActivity;
+import kr.co.midas.midasmobile.base.domain.Voluntary;
 import kr.co.midas.midasmobile.tabbar.adapters.VoluntListAdapter;
-import kr.co.midas.midasmobile.tabbar.objects.VoluntObject;
 
 
 public class VoluntFragment extends Fragment {
 
 	private RecyclerView voluntView;
-	private List<VoluntObject> voluntObjects;
+	private List<Voluntary> voluntObjects;
 	private VoluntListAdapter voluntAdapter;
 	private GridLayoutManager gridLayoutManager;
 	private SearchView searchView;
@@ -41,7 +41,8 @@ public class VoluntFragment extends Fragment {
 		
 		View view = inflater.inflate(R.layout.fragment_volunt, container, false);
 		initViews(view);
-		firstPage(view);
+//		firstPage(view);
+
 		return view;
 	}
 
@@ -56,12 +57,12 @@ public class VoluntFragment extends Fragment {
 	}
 
 	private void firstPage(View view){
-		voluntObjects.add(new VoluntObject("http://52.79.189.34/story/cat1.jpg", "야", "2"));
-		voluntObjects.add(new VoluntObject("http://52.79.189.34/story/cat2.jpg", "야2", "2"));
-		voluntObjects.add(new VoluntObject("http://52.79.189.34/story/cat3.jpg", "야3", "2"));
-		voluntObjects.add(new VoluntObject("http://52.79.189.34/story/cat4.jpg", "야4", "2"));
-		voluntObjects.add(new VoluntObject("http://52.79.189.34/story/cat5.jpg", "야5", "2"));
-		voluntAdapter = new VoluntListAdapter(view.getContext(), voluntObjects);
+//		voluntObjects.add(new VoluntObject("http://52.79.189.34/story/cat1.jpg", "야", "2", null));
+//		voluntObjects.add(new VoluntObject("http://52.79.189.34/story/cat2.jpg", "야2", "2"));
+//		voluntObjects.add(new VoluntObject("http://52.79.189.34/story/cat3.jpg", "야3", "2"));
+//		voluntObjects.add(new VoluntObject("http://52.79.189.34/story/cat4.jpg", "야4", "2"));
+//		voluntObjects.add(new VoluntObject("http://52.79.189.34/story/cat5.jpg", "야5", "2"));
+//		voluntAdapter = new VoluntListAdapter(view.getContext(), voluntObjects);
 		voluntView.setAdapter(voluntAdapter);
 	}
 

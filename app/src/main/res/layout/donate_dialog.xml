@@ -5,7 +5,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/point_tap">
+        >
 
         <TextView
             android:layout_width="wrap_content"
@@ -23,11 +23,24 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_margin="10dp"
+            android:id="@+id/point_up"
             android:src="@drawable/arrowup"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="40dp"
+            android:layout_alignBottom="@+id/set_point"
+            android:layout_alignStart="@+id/point_down" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:id="@+id/point_down"
+            android:layout_below="@+id/point_up"
+            android:src="@drawable/arrowdown"
             android:layout_toRightOf="@+id/set_point"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             />
 
     </RelativeLayout>
@@ -53,9 +66,7 @@
         android:id="@+id/giveImg"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="160dp"
-        android:layout_alignParentBottom="true"
         android:layout_alignTop="@+id/givePoint"
-         />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

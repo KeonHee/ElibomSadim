@@ -42,30 +42,30 @@ public class MyActivityActivity extends AppCompatActivity {
         List<Record> fakeData = new ArrayList<>();
         fakeData.add(new Record(1,"zz",new Voluntary(
                 0,"강남","제목","내용","교육", Calendar.getInstance().getTime(),6,5,5
-        ),null,null));
+                , null),null,null));
         fakeData.add(new Record(1,"zz",new Voluntary(
                 0,"강남","제목","내용","교육", Calendar.getInstance().getTime(),6,5,5
-        ),null,null));
+                , null),null,null));
         fakeData.add(new Record(1,"zz",new Voluntary(
                 0,"강남","제목","내용","교육", Calendar.getInstance().getTime(),6,5,5
-        ),null,null));
+                , null),null,null));
         fakeData.add(new Record(1,"zz",new Voluntary(
                 0,"강남","제목","내용","교육", Calendar.getInstance().getTime(),6,5,5
-        ),null,null));
+                , null),null,null));
         fakeData.add(new Record(1,"zz",new Voluntary(
                 0,"강남","제목","내용","교육", Calendar.getInstance().getTime(),6,5,5
-        ),null,null));
+                , null),null,null));
         fakeData.add(new Record(1,"zz",new Voluntary(
                 0,"강남","제목","내용","교육", Calendar.getInstance().getTime(),6,5,5
-        ),null,null));
+                , null),null,null));
         fakeData.add(new Record(1,"zz",new Voluntary(
                 0,"강남","제목","내용","교육", Calendar.getInstance().getTime(),6,5,5
-        ),null,null));fakeData.add(new Record(1,"zz",new Voluntary(
+                , null),null,null));fakeData.add(new Record(1,"zz",new Voluntary(
                 0,"강남","제목","내용","교육", Calendar.getInstance().getTime(),6,5,5
-        ),null,null));
+                , null),null,null));
         fakeData.add(new Record(1,"zz",new Voluntary(
                 0,"강남","제목","내용","교육", Calendar.getInstance().getTime(),6,5,5
-        ),null,null));
+                , null),null,null));
 
         mMyActivityAdapter.setListData(fakeData);
     }

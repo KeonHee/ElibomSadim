@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class DonateFragment extends Fragment implements View.OnClickListener {
 	private LinearLayoutManager linearLayoutManager;
 	private List<Report> reportObjects;
 	private Dialog donateDialog;
-	private RelativeLayout tabPoint;
+	private ImageView arrowUp, arrowDown;
 	private TextView currentPoint, setPoint, givePoint, showDonate;
 
 	@Override
@@ -52,8 +52,10 @@ public class DonateFragment extends Fragment implements View.OnClickListener {
 
 		donateDialog = new Dialog(view.getContext());
 		donateDialog.setContentView(R.layout.donate_dialog);
-		tabPoint = (RelativeLayout) donateDialog.findViewById(R.id.point_tap);
-		tabPoint.setOnClickListener(this);
+		arrowUp = (ImageView) donateDialog.findViewById(R.id.point_up);
+		arrowUp.setOnClickListener(this);
+		arrowDown = (ImageView) donateDialog.findViewById(R.id.point_down);
+		arrowDown.setOnClickListener(this);
 		setPoint = (TextView) donateDialog.findViewById(R.id.set_point);
 		givePoint = (TextView) donateDialog.findViewById(R.id.givePoint);
 		givePoint.setOnClickListener(this);
@@ -81,9 +83,15 @@ public class DonateFragment extends Fragment implements View.OnClickListener {
 		if(view == showDonate){
 			donateDialog.show();
 		}
-		else if (view == tabPoint){
+		else if (view == arrowUp){
 			String curStr = setPoint.getText().toString();
 			int value = Integer.parseInt(curStr) + 1000;
+			setPoint.setText(String.valueOf(value));
+
+		}
+		else if (view == arrowDown){
+			String curStr = setPoint.getText().toString();
+			int value = Integer.parseInt(curStr) - 1000;
 			setPoint.setText(String.valueOf(value));
 
 		}
@@ -92,8 +100,6 @@ public class DonateFragment extends Fragment implements View.OnClickListener {
 //			int point = Integer.parseInt(setPoint.getText().toString());
 //			Log.e("기부포인트", String.valueOf());
 			donateDialog.dismiss();
-
-
 
 		}
 	}

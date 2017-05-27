@@ -1,30 +1,30 @@
 package kr.co.midas.midasmobile.base.network;
 
-import kr.co.midas.midasmobile.base.domain.ResponseData;
-import kr.co.midas.midasmobile.base.domain.User;
+import kr.co.midas.midasmobile.base.domain.Voluntary;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 import static kr.co.midas.midasmobile.base.define.Define.HOST_URL;
 
-public interface LoginService {
+/**
+ * Created by user on 2017-05-28.
+ */
 
+public interface VoluntaryService {
     Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(HOST_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
     @FormUrlEncoded
-    @POST("midas/user/login.php")
-    Call<ResponseData<User>> login(@Field("email") String email, @Field("pw") String pw);
+    @GET("midas/voluntary/read.php")
+    Call<Voluntary> getVoluntaryOne(@Query("vid") long vid);
 
-    @GET("midas/user/read.php")
-    Call<ResponseData<User>> getUserInfo(@Query("user_id") long uid);
+    @GET("midas/voluntary/list.php")
+    Call<Voluntary> getVoluntaryAll(@Query("idx") long idx);
+
 }
-
