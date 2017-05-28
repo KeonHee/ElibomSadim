@@ -27,11 +27,5 @@
         android:layout_marginTop="50dp"
         android:src="@drawable/login"/>
 
-    <ImageView
-        android:id="@+id/moveSignUp"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/signup"/>
 
 </LinearLayout>

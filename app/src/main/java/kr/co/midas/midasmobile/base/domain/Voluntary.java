@@ -15,13 +15,13 @@ public class Voluntary implements Serializable {
     @SerializedName("section") private String section;
     @SerializedName("voluntary_date") private String voluntary_date;
     @SerializedName("voluntary_time") private int voluntary_time;
-    @SerializedName("max_participants") private int maxParticipants;
-    @SerializedName("current_participants") private int currentParticipants;
+    @SerializedName("max_participants") private String maxParticipants;
+    @SerializedName("current_participants") private String currentParticipants;
     @SerializedName("img_path") private String imgPath;
 
     public Voluntary(){}
 
-    public Voluntary(long id, String location, String title, String contents, String section, String voluntary_date, int voluntary_time, int maxParticipants, int currentParticipants, String imgPath) {
+    public Voluntary(long id, String location, String title, String contents, String section, String voluntary_date, int voluntary_time, String maxParticipants, String currentParticipants, String imgPath) {
         this.id = id;
         this.location = location;
         this.title = title;
@@ -83,20 +83,20 @@ public class Voluntary implements Serializable {
         this.voluntary_time = voluntary_time;
     }
 
-    public int getMaxParticipants() {
-        return maxParticipants;
-    }
-
-    public void setMaxParticipants(int maxParticipants) {
-        this.maxParticipants = maxParticipants;
-    }
-
-    public int getCurrentParticipants() {
+    public String getCurrentParticipants() {
         return currentParticipants;
     }
 
-    public void setCurrentParticipants(int currentParticipants) {
+    public void setCurrentParticipants(String currentParticipants) {
         this.currentParticipants = currentParticipants;
+    }
+
+    public String getMaxParticipants() {
+        return maxParticipants;
+    }
+
+    public void setMaxParticipants(String maxParticipants) {
+        this.maxParticipants = maxParticipants;
     }
 
     public String getSection() {

@@ -27,7 +27,8 @@
             android:textColor="@color/black"
             android:gravity="center"
             android:layout_below="@+id/volunImg"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"/>
 
         <TextView
             android:id="@+id/ptcipants"
@@ -37,6 +38,7 @@
             android:textColor="@color/black"
             android:layout_marginRight="10dp"
             android:gravity="right"
+            android:layout_gravity="center"
             />
 
     </RelativeLayout>

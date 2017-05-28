@@ -43,7 +43,7 @@ public class DonateFragment extends Fragment implements View.OnClickListener {
 		
 		View view = inflater.inflate(R.layout.fragment_donate, container, false);
 		initViews(view);
-
+		loadData(0, "all");
 		return view;
 	}
 
@@ -75,9 +75,9 @@ public class DonateFragment extends Fragment implements View.OnClickListener {
 
 	}
 
-	private void loadData(int page){
+	private void loadData(int page, String string){
 		ReportService reportService = ReportService.retrofit.create(ReportService.class);
-		Call<ResponseData<List<Report>>> call = reportService.getReportAll(page);
+		Call<ResponseData<List<Report>>> call = reportService.getReportAll(page, string);
 		call.enqueue(new Callback<ResponseData<List<Report>>>() {
 			@Override
 			public void onResponse(Call<ResponseData<List<Report>>> call, Response<ResponseData<List<Report>>> response) {

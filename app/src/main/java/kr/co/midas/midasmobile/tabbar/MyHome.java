@@ -14,6 +14,7 @@ import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabContentFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -86,11 +87,19 @@ public class MyHome extends Fragment implements OnTabChangeListener,
 	private void initializeTabHost(Bundle args) {
 
 		tabHost.setup();
-		for (int i = 1; i <= 4; i++) {
+
+		List<String> tabnames = new ArrayList<>();
+		tabnames.add("랭킹피드");
+		tabnames.add("봉사활동");
+		tabnames.add("팀리스트");
+		tabnames.add("기부");
+
+		for (int i = 0; i < 4; i++) {
 
 			TabHost.TabSpec tabSpec;
-			tabSpec = tabHost.newTabSpec("Tab " + i);
-			tabSpec.setIndicator("Tab " + i);
+
+			tabSpec = tabHost.newTabSpec(tabnames.get(i));
+			tabSpec.setIndicator(tabnames.get(i));
 			tabSpec.setContent(new FakeContent(getActivity()));
 			tabHost.addTab(tabSpec);
 		}

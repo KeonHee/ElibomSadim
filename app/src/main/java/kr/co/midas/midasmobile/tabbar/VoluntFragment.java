@@ -73,7 +73,7 @@ public class VoluntFragment extends Fragment {
 				if(response.isSuccessful()){
 					if(response.body().getCode() == 200){
 						List<Voluntary> volunList = response.body().getResult();
-						voluntAdapter.setTeamList(volunList);
+						voluntAdapter.setVoluntList(volunList);
 						Log.e("팀", String.valueOf(volunList));
 					}
 

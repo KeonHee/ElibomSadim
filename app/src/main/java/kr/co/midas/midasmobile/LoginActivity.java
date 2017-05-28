@@ -38,8 +38,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText editPwd;
     @BindView(R.id.loginImageView)
     ImageView loginImg;
-    @BindView(R.id.moveSignUp)
-    ImageView moveSignUp;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,7 +52,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         ButterKnife.bind(this);
         loginImg.setOnClickListener(this);
-        moveSignUp.setOnClickListener(this);
+
     }
 
     @Override
@@ -66,8 +64,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 login(email,pw);
             }
         }
-        else if (view == moveSignUp)
-            moveToPage(SignUpActivity.class);
+
     }
 
     private void moveToPage(Class<?> destActivity){

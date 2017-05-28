@@ -28,5 +28,5 @@ public interface ReportService {
     Call<ResponseData<List<Report>>> getReportOne(@Query("id") int id);
 
     @GET("midas/report/list.php")
-    Call<ResponseData<List<Report>>> getReportAll(@Query("idx") int idx);
+    Call<ResponseData<List<Report>>> getReportAll(@Query("idx") int idx, @Query("state") String state);
 }

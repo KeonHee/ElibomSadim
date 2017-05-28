@@ -24,9 +24,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SignUpActivity"
-            android:configChanges="screenSize|orientation|keyboard|keyboardHidden"/>
-
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
