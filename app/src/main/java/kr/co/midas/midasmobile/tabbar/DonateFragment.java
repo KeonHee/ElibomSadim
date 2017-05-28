@@ -17,14 +17,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.co.midas.midasmobile.R;
+import kr.co.midas.midasmobile.base.define.Define;
 import kr.co.midas.midasmobile.base.domain.Report;
 import kr.co.midas.midasmobile.base.domain.ResponseData;
 import kr.co.midas.midasmobile.base.network.ReportService;
+import kr.co.midas.midasmobile.base.utils.SharedPreferenceUtils;
 import kr.co.midas.midasmobile.tabbar.adapters.ReportListAdapter;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 
 
 public class DonateFragment extends Fragment implements View.OnClickListener {
@@ -50,7 +51,8 @@ public class DonateFragment extends Fragment implements View.OnClickListener {
 	private void initViews(View view){
 
 		currentPoint = (TextView) view.findViewById(R.id.myCurrentPoint);
-		currentPoint.setText("현재 포인트 : ");
+		long point = SharedPreferenceUtils.getLongPreference(getContext(), Define.SHR_PREF_CUR_POINT_KEY,-1);
+		currentPoint.setText("현재 포인트 : " + String.valueOf(point));
 		showDonate = (TextView) view.findViewById(R.id.showDonate);
 		showDonate.setOnClickListener(this);
 

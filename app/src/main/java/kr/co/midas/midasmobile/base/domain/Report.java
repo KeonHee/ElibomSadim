@@ -1,5 +1,7 @@
 package kr.co.midas.midasmobile.base.domain;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -9,15 +11,16 @@ import java.io.Serializable;
 public class Report implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private long id;
-    private String state; // 진행중, 완료
-    private String title;
 
-    private String date;
-    private String location;
-    private String point;
-    private String contents;
-    private String imgUrl;
+    @SerializedName("rep_id") private long id;
+    @SerializedName("state") private String state;
+    @SerializedName("rep_title") private String title;
+    @SerializedName("rep_date") private String date;
+    @SerializedName("rep_location") private String location;
+    @SerializedName("rep_point") private String point;
+    @SerializedName("rep_contents") private String contents;
+    @SerializedName("rep_image") private String imgUrl;
+
 
     public Report(){}
 
