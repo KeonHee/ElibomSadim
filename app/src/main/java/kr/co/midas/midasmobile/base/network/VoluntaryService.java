@@ -7,8 +7,10 @@ import kr.co.midas.midasmobile.base.domain.Voluntary;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 import static kr.co.midas.midasmobile.base.define.Define.HOST_URL;
@@ -23,11 +25,17 @@ public interface VoluntaryService {
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 
-    @FormUrlEncoded
     @GET("midas/voluntary/read.php")
     Call<ResponseData<List<Voluntary>>> getVoluntaryOne(@Query("vid") int vid);
 
     @GET("midas/voluntary/list.php")
     Call<ResponseData<List<Voluntary>>> getVoluntaryAll(@Query("idx") int idx);
+
+    @FormUrlEncoded
+    @POST("midas/donation/create.php")
+    Call<String> donate(@Field("type") String type, @Field("point") int point,
+                        @Field("user_id")int uid, @Field("team_id") int tid,
+                        @Field("donate_date") String donateDate, @Field("rep_id") int id
+                        );
 
 }
